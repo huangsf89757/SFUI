@@ -5,7 +5,6 @@
 
 import Foundation
 import RswiftResources
-import SFUI
 import UIKit
 
 public let R = Resource()
