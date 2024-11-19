@@ -84,84 +84,84 @@ extension SFResource {
     public struct Color {
         /// 主题色: theme ｜ 浅色：#70BD65 (绿色) ｜ 深色：#4CAF50 (深绿色)
         /// 代表生机与自然，适合用于强调积极的品牌形象和用户体验。
-        public static var theme: UIColor? = UIColor.sf.color(name: "theme", cls: SFResource.cls)
+        public static var theme: UIColor? = UIColor.sf.color(name: "theme", bundle: colorBundle)
         
         /// 标题颜色: title ｜ 浅色：#2A2A2A (深黑色) ｜ 深色：#FFFFFF (白色)
         /// 清晰且易于阅读，适合用于主要标题，确保信息传达的有效性。
-        public static var title: UIColor? = UIColor.sf.color(name: "title", cls: SFResource.cls)
+        public static var title: UIColor? = UIColor.sf.color(name: "title", bundle: colorBundle)
         
         /// 副标题颜色: subtitle ｜ 浅色：#616161 (中灰色) ｜ 深色：#B0B0B0 (浅灰色)
         /// 用于次要信息，提供视觉层次感，不会干扰主要内容。
-        public static var subtitle: UIColor? = UIColor.sf.color(name: "subtitle", cls: SFResource.cls)
+        public static var subtitle: UIColor? = UIColor.sf.color(name: "subtitle", bundle: colorBundle)
         
         /// 文本详情颜色: detail ｜ 浅色：#363636 (深灰色) ｜ 深色：#E0E0E0 (较浅灰色)
         /// 适合用于正文文本，提供良好的可读性和舒适的视觉体验。
-        public static var detail: UIColor? = UIColor.sf.color(name: "detail", cls: SFResource.cls)
+        public static var detail: UIColor? = UIColor.sf.color(name: "detail", bundle: colorBundle)
         
         /// 背景色: background ｜ 浅色：#F4F4F4 (浅灰色) ｜ 深色：#121212 (深灰色)
         /// 作为整体背景色，营造干净、简约的界面，增强内容的可读性。
-        public static var background: UIColor? = UIColor.sf.color(name: "background", cls: SFResource.cls)
+        public static var background: UIColor? = UIColor.sf.color(name: "background", bundle: colorBundle)
         
         /// 内容背景色: content ｜ 浅色：#FFFFFF (白色) ｜ 深色：#1E1E1E (稍浅的深灰色)
         /// 用于卡片或模块背景，提供清晰的分隔效果。
-        public static var content: UIColor? = UIColor.sf.color(name: "content", cls: SFResource.cls)
+        public static var content: UIColor? = UIColor.sf.color(name: "content", bundle: colorBundle)
         
         /// 分割线颜色: divider ｜ 浅色：#DEDEDE (浅灰色) ｜ 深色：#333333 (中灰色)
         /// 用于分隔不同内容区域，保持界面整洁。
-        public static var divider: UIColor? = UIColor.sf.color(name: "divider", cls: SFResource.cls)
+        public static var divider: UIColor? = UIColor.sf.color(name: "divider", bundle: colorBundle)
         
         /// 占位文本颜色: placeholder ｜ 浅色：#B0B0B0 (浅灰色) ｜ 深色：#7A7A7A (灰色)
         /// 用于输入框的占位符，提供提示信息而不干扰用户输入。
-        public static var placeholder: UIColor? = UIColor.sf.color(name: "placeholder", cls: SFResource.cls)
+        public static var placeholder: UIColor? = UIColor.sf.color(name: "placeholder", bundle: colorBundle)
         
         /// 禁用颜色: disabled ｜ 浅色：#EFF3F8 (浅灰色) ｜ 深色：#3A3A3A (深灰色)
         /// 用于表示不可操作的元素，帮助用户识别功能限制。
-        public static var disabled: UIColor? = UIColor.sf.color(name: "disabled", cls: SFResource.cls)
+        public static var disabled: UIColor? = UIColor.sf.color(name: "disabled", bundle: colorBundle)
         
         /// 警告色: warning ｜ 浅色：#FFA500 (橙色) ｜ 深色：#FFA500 (橙色)
         /// 用于提示用户注意的重要信息或警告，具有较强的视觉冲击力。
-        public static var warning: UIColor? = UIColor.sf.color(name: "warning", cls: SFResource.cls)
+        public static var warning: UIColor? = UIColor.sf.color(name: "warning", bundle: colorBundle)
         
         /// 成功色: success ｜ 浅色：#00CC66 (绿色) ｜ 深色：#00CC66 (绿色)
         /// 表示成功的反馈信息，如表单提交成功，传达积极的情绪。
-        public static var success: UIColor? = UIColor.sf.color(name: "success", cls: SFResource.cls)
+        public static var success: UIColor? = UIColor.sf.color(name: "success", bundle: colorBundle)
         
         /// 错误色: error ｜ 浅色：#DC3545 (红色) ｜ 深色：#DC3545 (红色)
         /// 用于表示错误或警示信息，具有强烈的警示作用。
-        public static var error: UIColor? = UIColor.sf.color(name: "error", cls: SFResource.cls)
+        public static var error: UIColor? = UIColor.sf.color(name: "error", bundle: colorBundle)
         
         /// 链接色: link ｜ 浅色：#0066CC (蓝色) ｜ 深色：#66B2FF (亮蓝色)
         /// 用于超链接或可点击按钮，帮助用户快速识别可交互元素。
-        public static var link: UIColor? = UIColor.sf.color(name: "link", cls: SFResource.cls)
+        public static var link: UIColor? = UIColor.sf.color(name: "link", bundle: colorBundle)
         
         /// 辅助色: auxiliary ｜ 浅色：#6C757D (中灰色) ｜ 深色：#A6A6A6 (中灰色)
         /// 用于辅助信息或次要元素，保持整体视觉的和谐。
-        public static var auxiliary: UIColor? = UIColor.sf.color(name: "auxiliary", cls: SFResource.cls)
+        public static var auxiliary: UIColor? = UIColor.sf.color(name: "auxiliary", bundle: colorBundle)
         
         /// 高亮色: highlight ｜ 浅色：#FFC107 (琥珀色) ｜ 深色：#FFC107 (琥珀色)
         /// 用于高亮显示某些元素，吸引用户的注意力。
-        public static var highlight: UIColor? = UIColor.sf.color(name: "highlight", cls: SFResource.cls)
+        public static var highlight: UIColor? = UIColor.sf.color(name: "highlight", bundle: colorBundle)
         
         /// 浅灰色: lightGray ｜ 浅色：#F2F2F2 (更浅的浅灰色) ｜ 深色：#E0E0E0 (较浅灰色)
-        public static var lightGray: UIColor? = UIColor.sf.color(name: "lightGray", cls: SFResource.cls)
+        public static var lightGray: UIColor? = UIColor.sf.color(name: "lightGray", bundle: colorBundle)
         
         /// 灰色: gray ｜ 浅色：#A9A9A9 (灰色) ｜ 深色：#7A7A7A (深灰色)
-        public static var gray: UIColor? = UIColor.sf.color(name: "gray", cls: SFResource.cls)
+        public static var gray: UIColor? = UIColor.sf.color(name: "gray", bundle: colorBundle)
         
         /// 深灰色: darkGray ｜ 浅色：#4B4B4B (深灰色) ｜ 深色：#333333 (中灰色)
-        public static var darkGray: UIColor? = UIColor.sf.color(name: "darkGray", cls: SFResource.cls)
+        public static var darkGray: UIColor? = UIColor.sf.color(name: "darkGray", bundle: colorBundle)
         
         /// 白色: white ｜ 浅色：#FFFFFF (白色) ｜ 深色：#000000 (黑色)
-        public static var white: UIColor? = UIColor.sf.color(name: "white", cls: SFResource.cls)
+        public static var white: UIColor? = UIColor.sf.color(name: "white", bundle: colorBundle)
         
         /// 白色(always): whiteAlways ｜ 浅色：#FFFFFF (白色) ｜ 深色：#FFFFFF (白色)
-        public static var whiteAlways: UIColor? = UIColor.sf.color(name: "whiteAlways", cls: SFResource.cls)
+        public static var whiteAlways: UIColor? = UIColor.sf.color(name: "whiteAlways", bundle: colorBundle)
         
         /// 黑色: black ｜ 浅色：#000000 (黑色) ｜ 深色：#FFFFFF (白色)
-        public static var black: UIColor? = UIColor.sf.color(name: "black", cls: SFResource.cls)
+        public static var black: UIColor? = UIColor.sf.color(name: "black", bundle: colorBundle)
         
         /// 黑色(always): blackAlways ｜ 浅色：#000000 (黑色) ｜ 深色：#000000 (黑色)
-        public static var blackAlways: UIColor? = UIColor.sf.color(name: "blackAlways", cls: SFResource.cls)
+        public static var blackAlways: UIColor? = UIColor.sf.color(name: "blackAlways", bundle: colorBundle)
     }
 }
 

@@ -56,3 +56,38 @@ target 'SFUI_Example' do
 end
 
 
+#===================#
+#=      COLOR      =#
+#===================#
+# 颜色定义
+COLOR_RED = "\033[0;31m"
+COLOR_GREEN = "\033[0;32m"
+COLOR_YELLOW = "\033[0;33m"
+COLOR_BLUE = "\033[0;34m"
+COLOR_PURPLE = "\033[0;35m"
+COLOR_CYAN = "\033[0;36m"
+COLOR_RESET = "\033[0m"
+
+# 彩色打印方法
+def colorize(color, text)
+  puts "#{color}#{text}#{COLOR_RESET}"
+end
+
+
+
+#===================#
+#=   POD INSTALL   =#
+#===================#
+# pre_install
+pre_install do |installer|
+  colorize(COLOR_BLUE, ">>>>>>>>>>> pre_install [开始] <<<<<<<<<<<<")
+  
+  colorize(COLOR_GREEN, ">>>>>>>>>>> pre_install [结束] <<<<<<<<<<<<")
+end
+
+# post_install
+post_install do |installer|
+  colorize(COLOR_BLUE, ">>>>>>>>>>> post_install [开始] <<<<<<<<<<<<")
+  
+  colorize(COLOR_GREEN, ">>>>>>>>>>> post_install [结束] <<<<<<<<<<<<")
+end

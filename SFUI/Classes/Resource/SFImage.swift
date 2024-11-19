@@ -18,31 +18,31 @@ public typealias SFImage = SFResource.Image
 
 extension SFResource {
     public struct Image {
-        public static var close: UIImage? = UIImage.sf.image(name: "close", cls: cls)
-        public static var back: UIImage? = UIImage.sf.image(name: "back", cls: cls)
+        public static var close: UIImage? = UIImage.sf.image(name: "close", bundle: imageBundle)
+        public static var back: UIImage? = UIImage.sf.image(name: "back", bundle: imageBundle)
         public struct Doc {
-            public static var folder: UIImage? = UIImage.sf.image(name: "doc/folder", cls: cls)
-            public static var file: UIImage? = UIImage.sf.image(name: "doc/file", cls: cls)
+            public static var folder: UIImage? = UIImage.sf.image(name: "doc/folder", bundle: imageBundle)
+            public static var file: UIImage? = UIImage.sf.image(name: "doc/file", bundle: imageBundle)
         }
         public struct Arrow {
-            public static var top: UIImage? = UIImage.sf.image(name: "arrow/top", cls: cls)
-            public static var left: UIImage? = UIImage.sf.image(name: "arrow/left", cls: cls)
-            public static var right: UIImage? = UIImage.sf.image(name: "arrow/right", cls: cls)
-            public static var bottom: UIImage? = UIImage.sf.image(name: "arrow/bottom", cls: cls)
+            public static var top: UIImage? = UIImage.sf.image(name: "arrow/top", bundle: imageBundle)
+            public static var left: UIImage? = UIImage.sf.image(name: "arrow/left", bundle: imageBundle)
+            public static var right: UIImage? = UIImage.sf.image(name: "arrow/right", bundle: imageBundle)
+            public static var bottom: UIImage? = UIImage.sf.image(name: "arrow/bottom", bundle: imageBundle)
         }
         public struct Triangle {
-            public static var top: UIImage? = UIImage.sf.image(name: "triangle/top", cls: cls)
-            public static var left: UIImage? = UIImage.sf.image(name: "triangle/left", cls: cls)
-            public static var right: UIImage? = UIImage.sf.image(name: "triangle/right", cls: cls)
-            public static var bottom: UIImage? = UIImage.sf.image(name: "triangle/bottom", cls: cls)
+            public static var top: UIImage? = UIImage.sf.image(name: "triangle/top", bundle: imageBundle)
+            public static var left: UIImage? = UIImage.sf.image(name: "triangle/left", bundle: imageBundle)
+            public static var right: UIImage? = UIImage.sf.image(name: "triangle/right", bundle: imageBundle)
+            public static var bottom: UIImage? = UIImage.sf.image(name: "triangle/bottom", bundle: imageBundle)
         }
         public struct Hud {
-            public static var loading: UIImage? = UIImage.sf.image(name: "hud/loading", cls: cls)
-            public static var success: UIImage? = UIImage.sf.image(name: "hud/success", cls: cls)
-            public static var failure: UIImage? = UIImage.sf.image(name: "hud/failure", cls: cls)
-            public static var info: UIImage? = UIImage.sf.image(name: "hud/info", cls: cls)
-            public static var ban: UIImage? = UIImage.sf.image(name: "hud/ban", cls: cls)
-            public static var ask: UIImage? = UIImage.sf.image(name: "hud/ask", cls: cls)
+            public static var loading: UIImage? = UIImage.sf.image(name: "hud/loading", bundle: imageBundle)
+            public static var success: UIImage? = UIImage.sf.image(name: "hud/success", bundle: imageBundle)
+            public static var failure: UIImage? = UIImage.sf.image(name: "hud/failure", bundle: imageBundle)
+            public static var info: UIImage? = UIImage.sf.image(name: "hud/info", bundle: imageBundle)
+            public static var ban: UIImage? = UIImage.sf.image(name: "hud/ban", bundle: imageBundle)
+            public static var ask: UIImage? = UIImage.sf.image(name: "hud/ask", bundle: imageBundle)
         }
     }
 }
