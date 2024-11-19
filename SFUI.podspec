@@ -53,7 +53,6 @@ TODO: Add long description of the pod here.
   s.dependency 'SnapKitExtend',               '~> 1.1.0'
   s.dependency 'Reusable',                    '~> 4.1.2'
   s.dependency 'IQKeyboardManagerSwift',      '~> 6.5.16'
-  s.dependency 'R.swift'
   
 end
 

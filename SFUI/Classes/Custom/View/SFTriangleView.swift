@@ -42,7 +42,7 @@ open class SFTriangleView: SFView {
     // MARK: ui
     public private(set) lazy var shapeLayer: CAShapeLayer = {
         return CAShapeLayer().then { layer in
-            layer.fillColor = R.color.black()?.cgColor
+            layer.fillColor = SFColor.UI.black?.cgColor
         }
     }()
    

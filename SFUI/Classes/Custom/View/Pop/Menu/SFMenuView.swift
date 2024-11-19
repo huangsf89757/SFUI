@@ -32,7 +32,7 @@
 //    override init(frame: CGRect) {
 //        super.init(frame: frame)
 //        backgroundColor = .clear
-//        shapeLayer.fillColor = SFColor.content?.cgColor
+//        shapeLayer.fillColor = SFColor.UI.content?.cgColor
 //        maskConfigeration.color = .clear
 //        maskConfigeration.clickEnable = true
 //        autoDismissWhenClickMask = false

@@ -30,7 +30,7 @@ final class SFToastView: SFPopView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .clear
-        self.sf.setCornerAndShadow(radius: 20, fillColor: R.color.background(), shadowColor: R.color.black(), shadowOpacity: 0.3, shadowOffset: .zero, shadowRadius: 5)
+        self.sf.setCornerAndShadow(radius: 20, fillColor: SFColor.UI.background, shadowColor: SFColor.UI.black, shadowOpacity: 0.3, shadowOffset: .zero, shadowRadius: 5)
         maskConfigeration.color = .clear
         maskConfigeration.clickEnable = true
         autoDismissWhenClickMask = false
@@ -64,7 +64,7 @@ final class SFToastView: SFPopView {
     private lazy var msgLabel: SFLabel = {
         return SFLabel().then { view in
             view.font = .systemFont(ofSize: 17, weight: .regular)
-            view.textColor = R.color.title()
+            view.textColor = SFColor.UI.title
             view.textAlignment = .center
             view.numberOfLines = 0
         }

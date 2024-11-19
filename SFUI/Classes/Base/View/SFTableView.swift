@@ -20,7 +20,7 @@ open class SFTableView: UITableView {
     // MARK: life cycle
     public override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
-        backgroundColor = R.color.content()
+        backgroundColor = SFColor.UI.content
         contentInsetAdjustmentBehavior = .never
         if #available(iOS 15.0, *) { sectionHeaderTopPadding = 0 }
         rowHeight = UITableView.automaticDimension

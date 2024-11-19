@@ -27,10 +27,10 @@ open class SFNavigationController: UINavigationController {
     // MARK: life cycle
     open override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = R.color.content()
+        view.backgroundColor = SFColor.UI.content
         edgesForExtendedLayout = []
         interactivePopGestureRecognizer?.delegate = self
-        sf.updateBar(barTintColor: R.color.background(), tintColor: R.color.title(), titleColor: R.color.title(), titleFont: .systemFont(ofSize: 20, weight: .bold))
+        sf.updateBar(barTintColor: SFColor.UI.background, tintColor: SFColor.UI.title, titleColor: SFColor.UI.title, titleFont: .systemFont(ofSize: 20, weight: .bold))
     }
 
 }

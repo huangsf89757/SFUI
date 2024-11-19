@@ -26,17 +26,17 @@ public final class SFHud {
         public var image: UIImage? {
             switch self {
             case .loading:
-                return R.image.hud.loading()
+                return SFImage.UI.Hud.loading
             case .success:
-                return R.image.hud.success()
+                return SFImage.UI.Hud.success
             case .failure:
-                return R.image.hud.failure()
+                return SFImage.UI.Hud.failure
             case .info:
-                return R.image.hud.info()
+                return SFImage.UI.Hud.info
             case .warning:
-                return R.image.hud.warning()
+                return SFImage.UI.Hud.warning
             case .error:
-                return R.image.hud.error()
+                return SFImage.UI.Hud.error
             }
         }
     }

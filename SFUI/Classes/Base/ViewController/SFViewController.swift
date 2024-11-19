@@ -62,14 +62,14 @@ open class SFViewController: UIViewController {
     public private(set) lazy var backBtn: SFButton = {
         return SFButton().then { view in
             view.frame = CGRectMake(0, 0, 40, 44)
-            view.setImage(R.image.back(), for: .normal)
+            view.setImage(SFImage.UI.back, for: .normal)
         }
     }()
     
     // MARK: life cycle
     open override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = R.color.content()
+        view.backgroundColor = SFColor.UI.content
         edgesForExtendedLayout = []
         if hidesBottomBarWhenPushed {
             backBtn.addTarget(self, action: #selector(backBtnClicked), for: .touchUpInside)

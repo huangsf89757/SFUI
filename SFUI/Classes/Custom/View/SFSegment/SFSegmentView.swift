@@ -92,14 +92,14 @@ open class SFSegmentView: SFView {
     }
     
     /// 标题颜色
-    public var titleColor: UIColor? = R.color.placeholder() {
+    public var titleColor: UIColor? = SFColor.UI.placeholder {
         didSet {
             updateTitleColor()
         }
     }
     
     /// 选中标题颜色
-    public var selectedTitleColor: UIColor? = R.color.theme() {
+    public var selectedTitleColor: UIColor? = SFColor.UI.theme {
         didSet {
             updateSelectedTitleColor()
         }
