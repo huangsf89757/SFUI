@@ -37,7 +37,7 @@ final class SFHudView: SFPopView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .clear
-        self.sf.setCornerAndShadow(radius: 20, fillColor: SFColor.background, shadowColor: SFColor.black, shadowOpacity: 0.3, shadowOffset: .zero, shadowRadius: 5)
+        self.sf.setCornerAndShadow(radius: 20, fillColor: R.color.background(), shadowColor: R.color.black(), shadowOpacity: 0.3, shadowOffset: .zero, shadowRadius: 5)
         maskConfigeration.color = .clear
         maskConfigeration.clickEnable = true
         autoDismissWhenClickMask = false
@@ -91,18 +91,18 @@ final class SFHudView: SFPopView {
     private lazy var msgLabel: SFLabel = {
         return SFLabel().then { view in
             view.font = .systemFont(ofSize: 17, weight: .regular)
-            view.textColor = SFColor.title
+            view.textColor = R.color.title()
             view.textAlignment = .center
             view.numberOfLines = 0
         }
     }()
     private lazy var closeBtn: SFButton = {
         return SFButton().then { view in
-            let image = SFImage.close?.sf.resize(to: CGSize(width: 15, height: 15))
+            let image = R.image.close()?.sf.resize(to: CGSize(width: 15, height: 15))
             view.setImage(image, for: .normal)
-            view.backgroundColor = SFColor.background
+            view.backgroundColor = R.color.background()
             view.layer.cornerRadius = 12
-            view.layer.shadowColor = SFColor.black?.cgColor
+            view.layer.shadowColor = R.color.black()?.cgColor
             view.layer.shadowOpacity = 0.2
             view.layer.shadowOffset = .zero
             view.layer.shadowRadius = 10

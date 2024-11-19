@@ -25,21 +25,21 @@ open class SFWebView: WKWebView {
     private lazy var progressView: UIProgressView = {
         return UIProgressView().then { view in
             view.trackTintColor = .clear
-            view.tintColor = SFColor.theme
+            view.tintColor = R.color.theme()
         }
     }()
     private lazy var errorTipView: SFView = {
         return SFView().then { view in
             let label = SFLabel()
             label.font = UIFont.systemFont(ofSize: 30, weight: .bold)
-            label.textColor = SFColor.placeholder
+            label.textColor = R.color.placeholder()
             label.text = "加载失败" // FIXME: text
             label.textAlignment = .center
             
             let btn = SFButton()
             btn.setTitle(" 返回 ", for: .normal) // FIXME: text
-            btn.setTitleColor(SFColor.placeholder, for: .normal)
-            btn.layer.borderColor = SFColor.placeholder?.cgColor
+            btn.setTitleColor(R.color.placeholder(), for: .normal) 
+            btn.layer.borderColor = R.color.placeholder()?.cgColor
             btn.layer.cornerRadius = 10
             btn.layer.borderWidth = 1
             btn.layer.masksToBounds = true

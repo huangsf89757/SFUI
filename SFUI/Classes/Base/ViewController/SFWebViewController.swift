@@ -22,7 +22,7 @@ open class SFWebViewController: SFViewController {
         preferences.javaScriptCanOpenWindowsAutomatically = true
         config.preferences = preferences
         let view = SFWebView(frame: .zero, configuration: config)
-        view.backgroundColor = SFColor.content
+        view.backgroundColor = R.color.content()
         view.allowsBackForwardNavigationGestures = true
         view.addObserver(self, forKeyPath: "estimatedProgress", context: nil)
         view.addObserver(self, forKeyPath: "title", context: nil)

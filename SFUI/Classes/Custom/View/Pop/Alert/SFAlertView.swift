@@ -72,7 +72,7 @@ final class SFAlertView: SFPopView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .clear
-        self.sf.setCornerAndShadow(radius: 20, fillColor: SFColor.background, shadowColor: SFColor.black, shadowOpacity: 0.3, shadowOffset: .zero, shadowRadius: 5)
+        self.sf.setCornerAndShadow(radius: 20, fillColor: R.color.background(), shadowColor: R.color.black(), shadowOpacity: 0.3, shadowOffset: .zero, shadowRadius: 5)
         maskConfigeration.color = .clear
         maskConfigeration.clickEnable = true
         autoDismissWhenClickMask = false
@@ -120,20 +120,20 @@ final class SFAlertView: SFPopView {
     
     private lazy var indicatorView: SFView = {
         return SFView().then { view in
-            view.backgroundColor = SFColor.theme
+            view.backgroundColor = R.color.theme()
         }
     }()
     private lazy var titleLabel: SFLabel = {
         return SFLabel().then { view in
             view.font = .systemFont(ofSize: 20, weight: .bold)
-            view.textColor = SFColor.title
+            view.textColor = R.color.title()
             view.numberOfLines = 0
         }
     }()
     private lazy var msgLabel: SFLabel = {
         return SFLabel().then { view in
             view.font = .systemFont(ofSize: 17, weight: .regular)
-            view.textColor = SFColor.title
+            view.textColor =  R.color.title()
             view.numberOfLines = 0
         }
     }()
@@ -191,7 +191,7 @@ final class SFAlertView: SFPopView {
         if footerView.subviews.count > 0{
             views.append(footerView)
             if footerStyle == .edging, customActions.count == 0 {
-                footerView.backgroundColor = SFColor.divider
+                footerView.backgroundColor =  R.color.divider()
             } else {
                 footerView.backgroundColor = .clear
             }
@@ -309,16 +309,16 @@ final class SFAlertView: SFPopView {
             let btn = SFButton()
             btn.setTitle(title, for: .normal)
             if let style = style {
-                let color = SFColor.white?.withAlphaComponent(0.8)
+                let color = R.color.white()?.withAlphaComponent(0.8)
                 switch style {
                 case .block:
                     btn.backgroundColor = color
-                    btn.setTitleColor(SFColor.black, for: .normal)
+                    btn.setTitleColor(R.color.black(), for: .normal)
                     btn.layer.borderColor = color?.cgColor
                     btn.layer.borderWidth = 0
                 case .border:
                     btn.backgroundColor = .clear
-                    btn.setTitleColor(SFColor.black, for: .normal)
+                    btn.setTitleColor(R.color.black(), for: .normal)
                     btn.layer.borderColor = color?.cgColor
                     btn.layer.borderWidth = 1
                 }
@@ -355,8 +355,8 @@ final class SFAlertView: SFPopView {
             cancelBtn.layer.cornerRadius = 0
             sureBtn.layer.cornerRadius = 0
         }
-        let cancelColor = SFColor.black?.withAlphaComponent(0.3)
-        let sureColor = SFColor.theme
+        let cancelColor = R.color.black()?.withAlphaComponent(0.3)
+        let sureColor = R.color.theme()
         if actionStyle == .block {
             cancelBtn.backgroundColor = cancelColor
             cancelBtn.setTitleColor(UIColor.white, for: .normal)
@@ -367,20 +367,20 @@ final class SFAlertView: SFPopView {
             sureBtn.layer.borderColor = UIColor.clear.cgColor
             sureBtn.layer.borderWidth = 0
         } else if footerStyle == .spacing {
-            cancelBtn.backgroundColor = SFColor.content
+            cancelBtn.backgroundColor = R.color.content()
             cancelBtn.setTitleColor(cancelColor, for: .normal)
             cancelBtn.layer.borderColor = cancelColor?.cgColor
             cancelBtn.layer.borderWidth = 1
-            sureBtn.backgroundColor = SFColor.content
+            sureBtn.backgroundColor = R.color.content()
             sureBtn.setTitleColor(sureColor, for: .normal)
             sureBtn.layer.borderColor = sureColor?.cgColor
             sureBtn.layer.borderWidth = 1
         } else {
-            cancelBtn.backgroundColor = SFColor.content
+            cancelBtn.backgroundColor = R.color.content()
             cancelBtn.setTitleColor(cancelColor, for: .normal)
             cancelBtn.layer.borderColor = UIColor.clear.cgColor
             cancelBtn.layer.borderWidth = 0
-            sureBtn.backgroundColor = SFColor.content
+            sureBtn.backgroundColor = R.color.content()
             sureBtn.setTitleColor(sureColor, for: .normal)
             sureBtn.layer.borderColor = UIColor.clear.cgColor
             sureBtn.layer.borderWidth = 0

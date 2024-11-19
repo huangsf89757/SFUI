@@ -23,8 +23,8 @@ open class SFCatlogCell: SFTableViewCell {
             guard let node = node else { return }
             guard let itemModel = node.value else { return }
             expandBtn.isHidden = !node.isExpandable
-            let arrowImage = (node.isExpanded ? SFImage.Arrow.bottom : SFImage.Arrow.right)?.sf.resize(to: CGSize(width: 20, height: 20))
-            expandBtn.setImage(arrowImage, for: .normal)
+            let arrowImage = (node.isExpanded ? R.image.arrow.bottom() : R.image.arrow.right())?.sf.resize(to: CGSize(width: 20, height: 20))
+            expandBtn.setImage(arrowImage, for: .normal) 
             iconImgView.image = itemModel.type.icon
             nameLable.text = itemModel.name
             let leadingOffset = CGFloat((node.levelIdx - 1) * 10)

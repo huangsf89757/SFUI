@@ -53,15 +53,15 @@ open class SFTableViewCell: UITableViewCell {
     }()    
     public lazy var customSeparator: SFView = {
         return SFView().then { view in
-            view.backgroundColor = SFColor.divider
+            view.backgroundColor = R.color.divider()
         }
     }()
     
     // MARK: - life cycle
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = SFColor.content
-        contentView.backgroundColor = SFColor.content
+        backgroundColor = R.color.content()
+        contentView.backgroundColor = R.color.content()
         backgroundView = backgroundNorView
         selectedBackgroundView = backgroundSelView
     }

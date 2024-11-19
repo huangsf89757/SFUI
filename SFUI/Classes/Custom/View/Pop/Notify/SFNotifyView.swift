@@ -40,7 +40,7 @@ final class SFNotifyView: SFPopView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .clear
-        self.sf.setCornerAndShadow(radius: 20, fillColor: SFColor.background, shadowColor: SFColor.black, shadowOpacity: 0.3, shadowOffset: .zero, shadowRadius: 5)
+        self.sf.setCornerAndShadow(radius: 20, fillColor: R.color.background(), shadowColor: R.color.black(), shadowOpacity: 0.3, shadowOffset: .zero, shadowRadius: 5)
         maskConfigeration.color = .clear
         maskConfigeration.clickEnable = true
         autoDismissWhenClickMask = false
@@ -66,13 +66,13 @@ final class SFNotifyView: SFPopView {
             view.contentMode = .scaleAspectFit
             view.layer.cornerRadius = 8
             view.layer.masksToBounds = true
-            view.backgroundColor = SFColor.placeholder // FIXME: color
+            view.backgroundColor = R.color.placeholder()
         }
     }()
     private lazy var titleLabel: SFLabel = {
         return SFLabel().then { view in
             view.font = .systemFont(ofSize: 17, weight: .bold)
-            view.textColor = SFColor.title
+            view.textColor = R.color.title()
             view.textAlignment = .left
             view.numberOfLines = 1
         }
@@ -80,7 +80,7 @@ final class SFNotifyView: SFPopView {
     private lazy var msgLabel: SFLabel = {
         return SFLabel().then { view in
             view.font = .systemFont(ofSize: 15, weight: .regular)
-            view.textColor = SFColor.title
+            view.textColor = R.color.title()
             view.textAlignment = .left
             view.numberOfLines = 2
         }

@@ -23,8 +23,8 @@ open class SFOutlineCell: SFTableViewCell {
             guard let node = node else { return }
             guard let itemModel = node.value else { return }
             expandBtn.isHidden = !node.isExpandable
-            let arrowImage = (node.isExpanded ? SFImage.Triangle.bottom : SFImage.Triangle.right)?.sf.resize(to: CGSize(width: 20, height: 20))
-            expandBtn.setImage(arrowImage, for: .normal)
+            let arrowImage = (node.isExpanded ? R.image.triangle.bottom() : R.image.triangle.right())?.sf.resize(to: CGSize(width: 20, height: 20))
+            expandBtn.setImage(arrowImage, for: .normal) 
             nameLable.text = itemModel.name
             let leadingOffset = CGFloat((node.levelIdx - 1) * 10)
             expandBtn.snp.updateConstraints { make in

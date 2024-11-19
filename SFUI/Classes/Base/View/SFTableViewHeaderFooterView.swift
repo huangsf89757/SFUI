@@ -33,7 +33,7 @@ open class SFTableViewHeaderFooterView: UITableViewHeaderFooterView {
     // MARK: life cycle
     public override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = SFColor.content
+        contentView.backgroundColor = R.color.content()
         backgroundView = backgroundNorView
     }
     

@@ -46,6 +46,9 @@
     ],
     "IQKeyboardManagerSwift": [
       "~> 6.5.16"
+    ],
+    "R.swift": [
+
     ]
   },
   "swift_version": "5.0"

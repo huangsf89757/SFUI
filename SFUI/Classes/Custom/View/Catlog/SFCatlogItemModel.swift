@@ -14,12 +14,13 @@ public enum SFCatlogItemType {
     case file
     
     var icon: UIImage? {
-        switch self {
-        case .folder:
-            return SFImage.Doc.folder
-        case .file:
-            return SFImage.Doc.file
-        }
+//        switch self {
+//        case .folder:
+//            return SFImage.Doc.folder
+//        case .file:
+//            return SFImage.Doc.file
+//        }
+        return nil
     }
 }
 

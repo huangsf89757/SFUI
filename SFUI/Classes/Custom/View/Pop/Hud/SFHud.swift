@@ -20,23 +20,23 @@ public final class SFHud {
         case success
         case failure
         case info
-        case ask
-        case ban
+        case warning
+        case error
         
         public var image: UIImage? {
             switch self {
             case .loading:
-                return SFImage.Hud.loading
+                return R.image.hud.loading()
             case .success:
-                return SFImage.Hud.success
+                return R.image.hud.success()
             case .failure:
-                return SFImage.Hud.failure
+                return R.image.hud.failure()
             case .info:
-                return SFImage.Hud.info
-            case .ask:
-                return SFImage.Hud.ask
-            case .ban:
-                return SFImage.Hud.ban
+                return R.image.hud.info()
+            case .warning:
+                return R.image.hud.warning()
+            case .error:
+                return R.image.hud.error()
             }
         }
     }

@@ -11,7 +11,7 @@ import Foundation
 open class SFSegmentIndicatorView: SFView {
     // MARK: var
     /// 颜色
-    public var color = SFColor.theme
+    public var color = R.color.theme()
     
     // MARK: life cycle
     public override init(frame: CGRect) {
