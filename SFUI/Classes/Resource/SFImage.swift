@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 // Basic
+import SFBase
 import SFExtension
 
 // MARK: - SFImage
@@ -15,7 +16,7 @@ extension SFImage {
     public struct UI {
         public static var bundle = SFLibUI.bundle
         private static func image(name: String) -> UIImage? {
-            UIImage.sf.image(name: "close", bundle: Self.bundle)
+            UIImage.sf.image(name: name, bundle: Self.bundle)
         }
         
         public static var close: UIImage? = image(name: "close")
@@ -35,6 +36,10 @@ extension SFImage {
             public static var left: UIImage? = image(name: "triangle/left")
             public static var right: UIImage? = image(name: "triangle/right")
             public static var bottom: UIImage? = image(name: "triangle/bottom")
+        }
+        public struct Checkbox {
+            public static var nor: UIImage? = image(name: "checkbox/nor")
+            public static var sel: UIImage? = image(name: "checkbox/sel")
         }
         public struct Hud {
             public static var loading: UIImage? = image(name: "hud/loading")

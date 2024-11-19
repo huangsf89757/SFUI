@@ -6,6 +6,9 @@
 //
 
 import Foundation
+import UIKit
+// Basic
+import SFBase
 
 // MARK: - SFSegmentIndicatorView
 open class SFSegmentIndicatorView: SFView {

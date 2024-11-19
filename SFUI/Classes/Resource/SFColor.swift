@@ -8,10 +8,11 @@
 import Foundation
 import UIKit
 // Basic
+import SFBase
 import SFExtension
 
 
-// MARK: SFColor
+// MARK: - SFColor
 /*
  APP 配色方案
 
@@ -83,7 +84,7 @@ extension SFColor {
     public struct UI {
         public static var bundle = SFLibUI.bundle
         private static func color(name: String) -> UIColor? {
-            UIColor.sf.color(name: "close", bundle: Self.bundle)
+            UIColor.sf.color(name: name, bundle: Self.bundle)
         }
         
         /// 主题色: theme ｜ 浅色：#70BD65 (绿色) ｜ 深色：#4CAF50 (深绿色)

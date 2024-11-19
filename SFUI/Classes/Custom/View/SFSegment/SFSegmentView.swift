@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 import AudioToolbox
+// Basic
+import SFBase
 
 // TODO: 嵌套一个ScrollView实现：
 // 1、水平位置：居左、居中、居右

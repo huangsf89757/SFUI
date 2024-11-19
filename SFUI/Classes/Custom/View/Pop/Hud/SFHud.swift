@@ -7,6 +7,8 @@
 
 import Foundation
 import UIKit
+// Basic
+import SFBase
 
 // MARK: - SFHud
 public final class SFHud {
