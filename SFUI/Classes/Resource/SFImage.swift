@@ -21,6 +21,7 @@ extension SFImage {
         
         public static var close: UIImage? { image(name: "close") }
         public static var back: UIImage? { image(name: "back") }
+        public static var detail: UIImage? { image(name: "detail") }
         public struct Doc {
             public static var folder: UIImage? { image(name: "doc/folder") }
             public static var file: UIImage? { image(name: "doc/file") }

@@ -15,19 +15,21 @@ platform :ios, '14.0'
 def pods_private
   # 本地路径
   $root = '../../../'
-  $business = 'Business/'
-  $ui = 'UI/'
+ 
   $basic = 'Basic/'
+  $ui = 'UI/'
+  $business = 'Business/'
   $server = 'Server/'
   
-  # Business
-  
-  # UI
-  pod 'SFUI',           :path => $root + $ui + 'SFUI/'
   
   # Basic
   pod 'SFBase',         :path => $root + $basic + 'SFBase/'
   pod 'SFExtension',    :path => $root + $basic + 'SFExtension/'
+  
+  # UI
+  pod 'SFUI',           :path => $root + $ui + 'SFUI/'
+  
+  # Business
     
   # Server
   pod 'SFLogger',       :path => $root + $server + 'SFLogger/'
