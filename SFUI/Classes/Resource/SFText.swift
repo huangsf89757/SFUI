@@ -13,6 +13,11 @@ import SFExtension
 
 // MARK: - SFText
 extension SFText {
+    public struct App {
+        public static var name: String?
+        public static var slogen: String?
+    }
+    
     public struct UI {
         public static var bundle = SFLibUI.bundle
 //        private static func font(name: String) -> UIImage? {

@@ -13,6 +13,10 @@ import SFExtension
 
 // MARK: - SFImage
 extension SFImage {
+    public struct App {
+        public static var icon: UIImage?
+    }
+    
     public struct UI {
         public static var bundle = SFLibUI.bundle
         private static func image(name: String) -> UIImage? {
