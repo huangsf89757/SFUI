@@ -32,6 +32,7 @@ open class SFScrollView: UIScrollView {
     public init(dir: Direction) {
         self.dir = dir
         super.init(frame: .zero)
+        backgroundColor = SFColor.UI.background
         contentInsetAdjustmentBehavior = .never
         isScrollEnabled = true
         showsVerticalScrollIndicator = dir == .vertical

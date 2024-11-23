@@ -69,7 +69,7 @@ open class SFViewController: UIViewController {
     // MARK: life cycle
     open override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = SFColor.UI.content
+        view.backgroundColor = SFColor.UI.background
         edgesForExtendedLayout = []
         if hidesBottomBarWhenPushed {
             backBtn.addTarget(self, action: #selector(backBtnClicked), for: .touchUpInside)
