@@ -24,9 +24,16 @@ extension SFImage {
             UIImage.sf.image(name: name, bundle: Self.bundle)
         }
         
-        public static var close: UIImage? { image(name: "close") }
-        public static var back: UIImage? { image(name: "back") }
-        public static var detail: UIImage? { image(name: "detail") }
+        public struct Com {
+            public static var close: UIImage? { image(name: "com/close") }
+            public static var back: UIImage? { image(name: "com/back") }
+            public static var detail: UIImage? { image(name: "com/detail") }
+            public static var search: UIImage? { image(name: "com/search") }
+            public static var goto: UIImage? { image(name: "com/goto") }
+            public static var tip: UIImage? { image(name: "com/tip") }
+            public static var setting: UIImage? { image(name: "com/setting") }
+            public static var filter: UIImage? { image(name: "com/filter") }
+        }
         public struct Doc {
             public static var folder: UIImage? { image(name: "doc/folder") }
             public static var file: UIImage? { image(name: "doc/file") }
@@ -46,6 +53,15 @@ extension SFImage {
         public struct Checkbox {
             public static var nor: UIImage? { image(name: "checkbox/nor") }
             public static var sel: UIImage? { image(name: "checkbox/sel") }
+        }
+        public struct Select {
+            public static var nor: UIImage? { image(name: "select/nor") }
+            public static var sel: UIImage? { image(name: "select/sel") }
+        }
+        public struct Sort {
+            public static var asc: UIImage? { image(name: "sort/asc") }
+            public static var des: UIImage? { image(name: "sort/des") }
+            public static var none: UIImage? { image(name: "sort/none") }
         }
         public struct Hud {
             public static var loading: UIImage? { image(name: "hud/loading") }
