@@ -80,14 +80,14 @@ open class SFPopView: SFView {
     ///   - topLevel: window层级
     open func show(in view: UIView? = nil,
                    stay duration: TimeInterval? = nil,
-                   showAnimations: [CAAnimation] = [],
-                   dismissAnimations: [CAAnimation] = [],
+                   showAnimationsBlock: ((SFPopView) -> [CAAnimation])? = nil,
+                   dismissAnimationsBlock: ((SFPopView) -> [CAAnimation])? = nil,
                    topLevel: Bool = true) {
         DispatchQueue.main.async {
             let enable = self.willShow(in: view, topLevel: topLevel)
             guard enable else { return }
-            if showAnimations.count > 0 {
-                self.showing(animations: showAnimations)
+            if let showAnimationsBlock = showAnimationsBlock {
+                self.showing(animationsBlock: showAnimationsBlock)
             } else {
                 self.didShow()
             }
@@ -96,7 +96,7 @@ open class SFPopView: SFView {
             self.stayTask?.cancel()
             if let duration = duration {
                 let task = DispatchWorkItem {
-                    self.dismiss(animations: dismissAnimations)
+                    self.dismiss(animationsBlock: dismissAnimationsBlock)
                 }
                 self.stayTask = task
             }
@@ -105,12 +105,12 @@ open class SFPopView: SFView {
     
     /// 消失
     /// - Parameter anim: 消失动画
-    open func dismiss(animations: [CAAnimation] = []) {
+    open func dismiss(animationsBlock: ((SFPopView) -> [CAAnimation])? = nil) {
         DispatchQueue.main.async {
             let enable = self.willDismiss()
             guard enable else { return }
-            if animations.count > 0 {
-                self.dismissing(animations: animations)
+            if let animationsBlock = animationsBlock {
+                self.dismissing(animationsBlock: animationsBlock)
             } else {
                 self.didDismiss()
             }
@@ -141,12 +141,18 @@ extension SFPopView {
         if topLevel || !isVisible {
             SFPopManager.shared.show(identifier: self.identifier, window: window)
         }
+        
+        window.setNeedsLayout()
         window.layoutIfNeeded()
+        self.setNeedsLayout()
+        self.layoutIfNeeded()
+        
         Log.debug("frame=\(frame)")
         return true
     }
     
-    private func showing(animations: [CAAnimation]) {
+    private func showing(animationsBlock: ((SFPopView) -> [CAAnimation])) {
+        let animations = animationsBlock(self)
         guard animations.count > 0 else { return }
         status = .showing
         var duration: TimeInterval?
@@ -198,7 +204,8 @@ extension SFPopView {
         return true
     }
     
-    private func dismissing(animations: [CAAnimation]) {
+    private func dismissing(animationsBlock: ((SFPopView) -> [CAAnimation])) {
+        let animations = animationsBlock(self)
         guard animations.count > 0 else { return }
         status = .dismissing
         var duration: TimeInterval?
@@ -284,7 +291,7 @@ extension SFPopView {
         case offset(CGFloat, CGFloat)
     }
     
-    public func animationOfTranslation(from: Position, to: Position, duration: TimeInterval) -> CAAnimation {
+    public func animationOfTranslation(from: Position, to: Position, duration: TimeInterval = 0.24) -> CAAnimation {
         let anim = CABasicAnimation(keyPath: "transform.translation")
         anim.fromValue = getValue(position: from)
         anim.toValue = getValue(position: to)
@@ -297,9 +304,13 @@ extension SFPopView {
             case .zero:
                 value = .zero
             case .top:
-                value = CGPoint(x: 0, y: -frame.maxY)
+                print("frame=\(frame)")
+                print("superViewRect=\(superViewRect)")
+                value = CGPoint(x: 0, y: -frame.size.height)
+//                value = CGPoint(x: 0, y: -superViewRect.height)
             case .bottom:
-                value = CGPoint(x: 0, y: abs(superViewRect.maxY - frame.minY))
+//                value = CGPoint(x: 0, y: abs(superViewRect.maxY - frame.minY))
+                value = CGPoint(x: 0, y: superViewRect.height)
             case .left:
                 value = CGPoint(x: -frame.maxX, y: 0)
             case .right:
@@ -327,7 +338,7 @@ extension SFPopView {
         }
     }
     
-    public func animationOfScale(from: CGFloat, to: CGFloat, duration: TimeInterval) -> CAAnimation {
+    public func animationOfScale(from: CGFloat, to: CGFloat, duration: TimeInterval = 0.24) -> CAAnimation {
         let anim = CABasicAnimation(keyPath: "transform.scale")
         anim.fromValue = from
         anim.toValue = to
@@ -335,7 +346,7 @@ extension SFPopView {
         return anim
     }
     
-    public func animationOfOpacity(from: CGFloat, to: CGFloat, duration: TimeInterval) -> CAAnimation {
+    public func animationOfOpacity(from: CGFloat, to: CGFloat, duration: TimeInterval = 0.24) -> CAAnimation {
         let anim = CABasicAnimation(keyPath: "opacity")
         anim.fromValue = from
         anim.toValue = to

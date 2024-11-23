@@ -67,14 +67,17 @@ extension SFNotify {
         view.icon = icon
         view.title = title
         view.msg = msg
-        let animDuration: TimeInterval = 3
-        let showAnimationOfTranslation = view.animationOfTranslation(from: .top, to: .zero, duration: animDuration)
-        let showAnimationOfOpacity = view.animationOfOpacity(from: 0, to: 1, duration: animDuration)
-        let dismissAnimationOfTranslation = view.animationOfTranslation(from: .zero, to: .top, duration: animDuration)
-        let dismissAnimationOfOpacity = view.animationOfOpacity(from: 1, to: 0, duration: animDuration)
-        let showAnimations = [showAnimationOfTranslation, showAnimationOfOpacity]
-        let dismissAnimations = [dismissAnimationOfTranslation, dismissAnimationOfOpacity]
-        view.show(stay: duration, showAnimations: showAnimations, dismissAnimations: dismissAnimations)
+        view.show(stay: duration, showAnimationsBlock: {
+            popView in
+            let showAnimationOfTranslation = popView.animationOfTranslation(from: .top, to: .zero)
+            let showAnimationOfOpacity = popView.animationOfOpacity(from: 0, to: 1)
+            return [showAnimationOfTranslation, showAnimationOfOpacity]
+        }, dismissAnimationsBlock: {
+            popView in
+            let translation = popView.animationOfTranslation(from: .zero, to: .top)
+            let opacity = popView.animationOfOpacity(from: 1, to: 0)
+            return [translation, opacity]
+        })
     }
     
     /// dismiss

@@ -70,14 +70,17 @@ extension SFToast {
                      stay duration: TimeInterval? = 2) {
         view.position = position
         view.msg = msg
-        let animDuration: TimeInterval = 0.24
-        let showAnimationOfTranslation = view.animationOfTranslation(from: .bottom, to: .zero, duration: animDuration)
-        let showAnimationOfOpacity = view.animationOfOpacity(from: 0, to: 1, duration: animDuration)
-        let dismissAnimationOfTranslation = view.animationOfTranslation(from: .zero, to: .bottom, duration: animDuration)
-        let dismissAnimationOfOpacity = view.animationOfOpacity(from: 1, to: 0, duration: animDuration)
-        let showAnimations = [showAnimationOfTranslation, showAnimationOfOpacity]
-        let dismissAnimations = [dismissAnimationOfTranslation, dismissAnimationOfOpacity]
-        view.show(stay: duration, showAnimations: showAnimations, dismissAnimations: dismissAnimations)
+        view.show(stay: duration, showAnimationsBlock: {
+            popView in
+            let showAnimationOfTranslation = popView.animationOfTranslation(from: .bottom, to: .zero)
+            let showAnimationOfOpacity = popView.animationOfOpacity(from: 0, to: 1)
+            return [showAnimationOfTranslation, showAnimationOfOpacity]
+        }, dismissAnimationsBlock: {
+            popView in
+            let translation = popView.animationOfTranslation(from: .zero, to: .bottom)
+            let opacity = popView.animationOfOpacity(from: 1, to: 0)
+            return [translation, opacity]
+        })
     }
     
     /// dismiss
