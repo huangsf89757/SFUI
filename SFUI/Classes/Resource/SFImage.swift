@@ -15,6 +15,7 @@ import SFBase
 extension SFImage {
     public struct App {
         public static var icon: UIImage?
+        public static var logo: UIImage?
     }
     
     public struct UI {
