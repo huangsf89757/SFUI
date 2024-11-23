@@ -14,7 +14,7 @@ import SFBase
 // MARK: - SFFont
 extension SFFont {
     public struct UI {
-        public static var bundle = SFLibUI.bundle
+        public static var bundle = SFUILib.bundle
 //        private static func font(name: String) -> UIImage? {
 //            UIImage.sf.image(name: name, bundle: Self.bundle)
 //        }       
