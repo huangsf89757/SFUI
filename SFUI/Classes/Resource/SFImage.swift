@@ -33,6 +33,7 @@ extension SFImage {
             public static var tip: UIImage? { image(name: "com/tip") }
             public static var setting: UIImage? { image(name: "com/setting") }
             public static var filter: UIImage? { image(name: "com/filter") }
+            public static var edit: UIImage? { image(name: "com/edit") }
         }
         public struct Doc {
             public static var folder: UIImage? { image(name: "doc/folder") }

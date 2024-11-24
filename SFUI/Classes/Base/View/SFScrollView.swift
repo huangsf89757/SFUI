@@ -48,7 +48,7 @@ open class SFScrollView: UIScrollView {
     // MARK: ui
     public private(set) lazy var contentView: SFView = {
         return SFView().then { view in
-            view.backgroundColor = SFColor.UI.content
+            view.backgroundColor = SFColor.UI.background
         }
     }()
     private func customUI() {
