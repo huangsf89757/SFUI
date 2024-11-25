@@ -15,6 +15,9 @@ open class SFScrollViewController: SFViewController {
     public let scrollView: SFScrollView
    
     // MARK: init
+    public convenience init() {
+        self.init(dir: .vertical)
+    }
     public init(dir: SFScrollView.Direction) {
         scrollView = SFScrollView(dir: dir)
         super.init(nibName: nil, bundle: nil)

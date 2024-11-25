@@ -29,6 +29,9 @@ open class SFScrollView: UIScrollView {
   
     
     // MARK: life cycle
+    public convenience init() {
+        self.init(dir: .vertical)
+    }
     public init(dir: Direction) {
         self.dir = dir
         super.init(frame: .zero)
