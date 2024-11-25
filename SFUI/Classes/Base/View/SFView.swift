@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 // Basic
-import SFBase
 import SFExtension
+import SFBase
 // Third
 import Then
 import SnapKit
@@ -20,6 +20,7 @@ open class SFView: UIView {
     // MARK: life cycle
     public override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = SFColor.UI.content
     }
     
     @available(*, unavailable)

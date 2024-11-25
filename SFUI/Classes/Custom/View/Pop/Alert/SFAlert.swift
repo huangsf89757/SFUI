@@ -118,7 +118,6 @@ extension SFAlert {
         view.title = title
         view.msg = msg
         view.offset = offset
-        let animDuration: TimeInterval = 0.24
         var from_show: SFPopView.Position = .zero
         var to_show: SFPopView.Position = .zero
         var from_dismiss: SFPopView.Position = .zero
@@ -135,13 +134,17 @@ extension SFAlert {
             from_dismiss = .zero
             to_dismiss = .bottom
         }
-        let showAnimationOfTranslation = view.animationOfTranslation(from: from_show, to: to_show, duration: animDuration)
-        let showAnimationOfOpacity = view.animationOfOpacity(from: 0, to: 1, duration: animDuration)
-        let dismissAnimationOfTranslation = view.animationOfTranslation(from: from_dismiss, to: to_dismiss, duration: animDuration)
-        let dismissAnimationOfOpacity = view.animationOfOpacity(from: 1, to: 0, duration: animDuration)
-        let showAnimations = [showAnimationOfTranslation, showAnimationOfOpacity]
-        let dismissAnimations = [dismissAnimationOfTranslation, dismissAnimationOfOpacity]
-        view.show(stay: duration, showAnimations: showAnimations, dismissAnimations: dismissAnimations)
+        view.show(stay: duration, showAnimationsBlock: {
+            popView in
+            let showAnimationOfTranslation = popView.animationOfTranslation(from: from_show, to: to_show)
+            let showAnimationOfOpacity = popView.animationOfOpacity(from: 0, to: 1)
+            return [showAnimationOfTranslation, showAnimationOfOpacity]
+        }, dismissAnimationsBlock: {
+            popView in
+            let translation = popView.animationOfTranslation(from: from_dismiss, to: to_dismiss)
+            let opacity = popView.animationOfOpacity(from: 1, to: 0)
+            return [translation, opacity]
+        })
     }
     
     /// dismiss

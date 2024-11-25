@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 // Basic
-import SFBase
 import SFExtension
+import SFBase
 // Third
 import Then
 import SnapKit
@@ -31,12 +31,12 @@ open class SFTableViewCell: UITableViewCell {
     
     
     // MARK: var
-    public var backgroundColorNor: UIColor? {
+    public var backgroundColorNor: UIColor? = SFColor.UI.content {
         didSet {
             backgroundNorView.backgroundColor = backgroundColorNor
         }
     }
-    public var backgroundColorSel: UIColor? {
+    public var backgroundColorSel: UIColor? = SFColor.UI.gray {
         didSet {
             backgroundSelView.backgroundColor = backgroundColorSel
         }

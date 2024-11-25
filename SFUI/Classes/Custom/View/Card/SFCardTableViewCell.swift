@@ -7,6 +7,9 @@
 
 import Foundation
 import UIKit
+// Basic
+import SFExtension
+import SFBase
 // Third
 import Then
 
@@ -15,7 +18,7 @@ import Then
 open class SFCardTableViewCell: SFTableViewCell {
     
     // MARK: var
-    public override var backgroundColorNor: UIColor? {
+    public override var backgroundColorNor: UIColor?  {
         didSet {
             backgroundNorView.backgroundColor = .clear
             cardBackgroundNorLayer.fillColor = backgroundColorNor?.cgColor

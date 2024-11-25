@@ -98,7 +98,7 @@ final class SFHudView: SFPopView {
     }()
     private lazy var closeBtn: SFButton = {
         return SFButton().then { view in
-            let image = SFImage.UI.close?.sf.resize(to: CGSize(width: 15, height: 15))
+            let image = SFImage.UI.Com.close?.sf.resize(to: CGSize(width: 15, height: 15))
             view.setImage(image, for: .normal)
             view.backgroundColor = SFColor.UI.background
             view.layer.cornerRadius = 12

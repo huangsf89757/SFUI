@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 // Basic
-import SFBase
 import SFExtension
+import SFBase
 
 
 // MARK: - SFColor
@@ -82,7 +82,7 @@ import SFExtension
 
 extension SFColor {
     public struct UI {
-        public static var bundle = SFLibUI.bundle
+        public static var bundle = SFUILib.bundle
         private static func color(name: String) -> UIColor? {
             UIColor.sf.color(name: name, bundle: Self.bundle)
         }

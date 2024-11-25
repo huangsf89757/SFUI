@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 // Basic
-import SFBase
 import SFExtension
+import SFBase
 // Third
 import Then
 import SnapKit
@@ -20,7 +20,7 @@ open class SFTableView: UITableView {
     // MARK: life cycle
     public override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: style)
-        backgroundColor = SFColor.UI.content
+        backgroundColor = SFColor.UI.background
         contentInsetAdjustmentBehavior = .never
         if #available(iOS 15.0, *) { sectionHeaderTopPadding = 0 }
         rowHeight = UITableView.automaticDimension

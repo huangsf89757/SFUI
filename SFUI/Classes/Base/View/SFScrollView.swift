@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 // Basic
-import SFBase
 import SFExtension
+import SFBase
 // Third
 import Then
 import SnapKit
@@ -35,6 +35,7 @@ open class SFScrollView: UIScrollView {
     public init(dir: Direction) {
         self.dir = dir
         super.init(frame: .zero)
+        backgroundColor = SFColor.UI.background
         contentInsetAdjustmentBehavior = .never
         isScrollEnabled = true
         showsVerticalScrollIndicator = dir == .vertical
@@ -50,7 +51,7 @@ open class SFScrollView: UIScrollView {
     // MARK: ui
     public private(set) lazy var contentView: SFView = {
         return SFView().then { view in
-            view.backgroundColor = SFColor.UI.content
+            view.backgroundColor = SFColor.UI.background
         }
     }()
     private func customUI() {

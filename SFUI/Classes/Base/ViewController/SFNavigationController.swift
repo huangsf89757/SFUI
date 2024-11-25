@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 // Basic
-import SFBase
 import SFExtension
+import SFBase
 // Third
 import Then
 import SnapKit
@@ -27,10 +27,10 @@ open class SFNavigationController: UINavigationController {
     // MARK: life cycle
     open override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = SFColor.UI.content
+        view.backgroundColor = SFColor.UI.background
         edgesForExtendedLayout = []
         interactivePopGestureRecognizer?.delegate = self
-        sf.updateBar(barTintColor: SFColor.UI.background, tintColor: SFColor.UI.title, titleColor: SFColor.UI.title, titleFont: .systemFont(ofSize: 20, weight: .bold))
+        sf.updateBar(barTintColor: SFColor.UI.content, tintColor: SFColor.UI.title, titleColor: SFColor.UI.title, titleFont: .systemFont(ofSize: 20, weight: .bold))
     }
 
 }
@@ -38,7 +38,7 @@ open class SFNavigationController: UINavigationController {
 
 // MARK: - push
 extension SFNavigationController {
-    open func pushViewController(_ viewController: UIViewController, animated: Bool, completion: @escaping () -> ()) {
+    public func pushViewController(_ viewController: UIViewController, animated: Bool, completion: @escaping () -> ()) {
         CATransaction.begin()
         CATransaction.setCompletionBlock(completion)
         self.pushViewController(viewController, animated: animated)
@@ -56,7 +56,7 @@ extension SFNavigationController {
 
 // MARK: - pop
 extension SFNavigationController {
-    open func popViewController(animated: Bool, completion: @escaping () -> ()) -> UIViewController? {
+    public func popViewController(animated: Bool, completion: @escaping () -> ()) -> UIViewController? {
         CATransaction.begin()
         CATransaction.setCompletionBlock(completion)
         let vc = self.popViewController(animated: animated)
@@ -67,7 +67,7 @@ extension SFNavigationController {
         super.popViewController(animated: animated)
     }
     
-    open func popToViewController(_ viewController: UIViewController, animated: Bool, completion: @escaping () -> ()) -> [UIViewController]? {
+    public func popToViewController(_ viewController: UIViewController, animated: Bool, completion: @escaping () -> ()) -> [UIViewController]? {
         CATransaction.begin()
         CATransaction.setCompletionBlock(completion)
         let vc = self.popToViewController(viewController, animated: animated)
@@ -78,7 +78,7 @@ extension SFNavigationController {
         super.popToViewController(viewController, animated: animated)
     }
     
-    open func popToRootViewController(animated: Bool, completion: @escaping () -> ()) -> [UIViewController]? {
+    public func popToRootViewController(animated: Bool, completion: @escaping () -> ()) -> [UIViewController]? {
         CATransaction.begin()
         CATransaction.setCompletionBlock(completion)
         let vc = self.popToRootViewController(animated: animated)

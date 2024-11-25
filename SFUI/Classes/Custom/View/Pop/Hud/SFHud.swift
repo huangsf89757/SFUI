@@ -103,14 +103,17 @@ extension SFHud {
         view.offset = offset
         view.closeTime = closeTime
         view.closeBlock = closeBlock
-        let animDuration: TimeInterval = 0.24
-        let showAnimationOfScale = view.animationOfScale(from: 0.8, to: 1, duration: animDuration)
-        let showAnimationOfOpacity = view.animationOfOpacity(from: 0, to: 1, duration: animDuration)
-        let dismissAnimationOfScale = view.animationOfScale(from: 1, to: 0.8, duration: animDuration)
-        let dismissAnimationOfOpacity = view.animationOfOpacity(from: 1, to: 0, duration: animDuration)
-        let showAnimations = [showAnimationOfScale, showAnimationOfOpacity]
-        let dismissAnimations = [dismissAnimationOfScale, dismissAnimationOfOpacity]
-        view.show(stay: duration, showAnimations: showAnimations, dismissAnimations: dismissAnimations)
+        view.show(stay: duration, showAnimationsBlock: {
+            popView in
+            let showAnimationOfScale = popView.animationOfScale(from: 0.8, to: 1)
+            let showAnimationOfOpacity = popView.animationOfOpacity(from: 0, to: 1)
+            return [showAnimationOfScale, showAnimationOfOpacity]
+        }, dismissAnimationsBlock: {
+            popView in
+            let scale = popView.animationOfScale(from: 1, to: 0.8)
+            let opacity = popView.animationOfOpacity(from: 1, to: 0)
+            return [scale, opacity]
+        })
     }
     
     /// dismiss

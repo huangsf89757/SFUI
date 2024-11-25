@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 // Basic
-import SFBase
 import SFExtension
+import SFBase
 // Third
 import Then
 import SnapKit
@@ -62,14 +62,14 @@ open class SFViewController: UIViewController {
     public private(set) lazy var backBtn: SFButton = {
         return SFButton().then { view in
             view.frame = CGRectMake(0, 0, 40, 44)
-            view.setImage(SFImage.UI.back, for: .normal)
+            view.setImage(SFImage.UI.Com.back, for: .normal)
         }
     }()
     
     // MARK: life cycle
     open override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = SFColor.UI.content
+        view.backgroundColor = SFColor.UI.background
         edgesForExtendedLayout = []
         if hidesBottomBarWhenPushed {
             backBtn.addTarget(self, action: #selector(backBtnClicked), for: .touchUpInside)
