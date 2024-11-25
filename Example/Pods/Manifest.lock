@@ -6,12 +6,15 @@ PODS:
   - Reusable/Storyboard (4.1.2)
   - Reusable/View (4.1.2)
   - SFBase (0.1.0):
+    - SFExtension (~> 0.1.0)
     - Then (~> 3.0.0)
   - SFBluetooth (0.1.0):
+    - SFBase (~> 0.1.0)
     - SFExtension (~> 0.1.0)
     - SFLogger (~> 0.1.0)
   - SFExtension (0.1.0)
   - SFLogger (0.1.0):
+    - SFExtension (~> 0.1.0)
     - SwiftyBeaver
   - SFUI (0.1.0):
     - IQKeyboardManagerSwift (~> 6.5.16)
@@ -58,16 +61,16 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 12d89768845bb77b55cc092ecc2b1f9370f06b76
   Reusable: 6bae6a5e8aa793c9c441db0213c863a64bce9136
-  SFBase: 1eba5a746b2470d76b0fec3477288ebea87ebb53
-  SFBluetooth: 971c75ed159c7ebe66f93cd6232315edc326f7b5
+  SFBase: 74ba9db6aad5b3f5471abcdfbc23a674efcafd4f
+  SFBluetooth: 03c30507c919f3eec02109344afd3ead6033f711
   SFExtension: db5d207c8b9cb15d09d28858aec071d51050f3c5
-  SFLogger: 32dc52852844a0ac9243948c00d64e02cc5a680a
-  SFUI: 9b84518709b64a65be8289aba32d43ca48015229
+  SFLogger: addda8edacef3ea943515daec2287f8347a48247
+  SFUI: 7363213be4101e2a8a0c4cec8f1bea67ba5b81c2
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SnapKitExtend: aa30cf37196195fae9c4354686cc7710184ebfcc
   SwiftyBeaver: 84069991dd5dca07d7069100985badaca7f0ce82
   Then: 844265ae87834bbe1147d91d5d41a404da2ec27d
 
-PODFILE CHECKSUM: d25c4def9b8363cd385b49d9cb3fee906f46e6b6
+PODFILE CHECKSUM: 8acb74bd22ac0102d14ebc5872156253c8e24112
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.16.2

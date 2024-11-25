@@ -60,8 +60,8 @@ open class SFTableViewCell: UITableViewCell {
     // MARK: - life cycle
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        backgroundColor = SFColor.UI.content
-        contentView.backgroundColor = SFColor.UI.content
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
         backgroundView = backgroundNorView
         selectedBackgroundView = backgroundSelView
     }
