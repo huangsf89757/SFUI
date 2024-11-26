@@ -39,7 +39,7 @@ public final class SFToast {
 // MARK: - func (class)
 /*
  注意⚠️
- 使用类方法进行toast，同一时间只能有一个toastView
+ 使用类方法，同一时间只能有一个toastView
  */
 extension SFToast {
     /// show
@@ -61,7 +61,7 @@ extension SFToast {
 // MARK: - func (instance)
 /*
  注意⚠️
- 使用对象方法进行toast，同一时间能有多个toastView
+ 使用对象方法，同一时间能有多个toastView
  */
 extension SFToast {
     /// show
