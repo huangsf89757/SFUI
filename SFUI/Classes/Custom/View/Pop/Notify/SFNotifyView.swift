@@ -20,7 +20,7 @@ final class SFNotifyView: SFPopView {
     /// icon
     var icon: UIImage? {
         didSet {
-            iconImgView.image = icon
+            iconImgView.image = icon ?? SFImage.App.icon
         }
     }
     /// title
@@ -44,10 +44,14 @@ final class SFNotifyView: SFPopView {
         maskConfigeration.color = .clear
         maskConfigeration.clickEnable = true
         autoDismissWhenClickMask = false
-        customUI()
     }
     
     override func customLayout() {
+        if let msg = msg {
+            customUI_iconTitleMsg()
+        } else {
+            customUI_iconTitle()
+        }
         self.snp.remakeConstraints { make in
             make.top.equalTo(superview!.safeAreaLayoutGuide.snp.top)
             make.centerX.equalToSuperview()
@@ -66,7 +70,6 @@ final class SFNotifyView: SFPopView {
             view.contentMode = .scaleAspectFit
             view.layer.cornerRadius = 8
             view.layer.masksToBounds = true
-            view.backgroundColor = SFColor.UI.placeholder
         }
     }()
     private lazy var titleLabel: SFLabel = {
@@ -85,25 +88,53 @@ final class SFNotifyView: SFPopView {
             view.numberOfLines = 2
         }
     }()
-    private func customUI() {
+}
+
+// MARK: - custom ui
+extension SFNotifyView {
+    private func restUI() {
+        sf.removeAllSubviews()
+    }
+    private func customUI_iconTitle() {
+        restUI()
         addSubview(iconImgView)
         addSubview(titleLabel)
-        addSubview(msgLabel)
-        iconImgView.snp.makeConstraints { make in
+        iconImgView.snp.remakeConstraints { make in
             make.top.equalToSuperview().offset(20)
             make.leading.equalToSuperview().offset(20)
             make.size.equalTo(CGSize(width: 40, height: 40))
+            make.bottom.lessThanOrEqualToSuperview().offset(-20)
         }
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(24)
+        titleLabel.snp.remakeConstraints { make in
+            make.leading.equalTo(iconImgView.snp.trailing).offset(5)
+            make.trailing.equalToSuperview().offset(-20)
+            make.top.greaterThanOrEqualToSuperview().offset(20)
+            make.bottom.lessThanOrEqualToSuperview().offset(-20)
+            make.centerY.equalToSuperview()
+        }
+    }
+    
+    private func customUI_iconTitleMsg() {
+        restUI()
+        addSubview(iconImgView)
+        addSubview(titleLabel)
+        addSubview(msgLabel)
+        iconImgView.snp.remakeConstraints { make in
+            make.top.equalToSuperview().offset(20)
+            make.leading.equalToSuperview().offset(20)
+            make.size.equalTo(CGSize(width: 40, height: 40))
+            make.bottom.lessThanOrEqualToSuperview().offset(-20)
+        }
+        titleLabel.snp.remakeConstraints { make in
             make.leading.equalTo(iconImgView.snp.trailing).offset(10)
             make.trailing.equalToSuperview().offset(-20)
+            make.top.equalToSuperview().offset(20)
         }
         msgLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.top.equalTo(titleLabel.snp.bottom).offset(5)
             make.leading.equalTo(titleLabel)
-            make.trailing.equalToSuperview().offset(-20)
-            make.bottom.equalToSuperview().offset(-20)
+            make.trailing.equalTo(titleLabel)
+            make.bottom.lessThanOrEqualToSuperview().offset(-20)
         }
     }
 }

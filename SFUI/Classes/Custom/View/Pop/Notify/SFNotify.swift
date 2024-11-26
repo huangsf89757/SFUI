@@ -11,7 +11,7 @@ import UIKit
 // MARK: - SFNotify
 public final class SFNotify {
     // MARK: singleton
-    private static let shared = SFNotify()
+    public static let shared = SFNotify()
     public init() {}
     
     
@@ -28,45 +28,17 @@ public final class SFNotify {
     }
 }
 
-
-// MARK: - func (class)
-/*
- 注意⚠️
- 使用类方法进行notify，同一时间只能有一个notifyView
- */
 extension SFNotify {
-    /// show
-    public static func show(icon: UIImage?,
-                            title: String?,
-                            msg: String?,
-                            stay duration: TimeInterval? = 5) {
-        SFNotify.shared.show(icon: icon,
-                             title: title,
-                             msg: msg,
-                             stay: duration)
-    }
-    
-    /// dismiss
-    public static func dismiss() {
-        SFNotify.shared.dismiss()
-    }
-}
-
-
-// MARK: - func (instance)
-/*
- 注意⚠️
- 使用对象方法进行notify，同一时间能有多个notifyView
- */
-extension SFNotify {
-    /// show
-    public func show(icon: UIImage?,
-                     title: String?,
-                     msg: String?,
-                     stay duration: TimeInterval? = 5) {
+    /// config
+    public func config(title: String?,
+                     msg: String? = nil,
+                     icon: UIImage? = nil) {
         view.icon = icon
         view.title = title
         view.msg = msg
+    }
+    /// show
+    public func show(stay duration: TimeInterval? = 5) {
         view.show(stay: duration, showAnimationsBlock: {
             popView in
             let showAnimationOfTranslation = popView.animationOfTranslation(from: .top, to: .zero)
@@ -79,7 +51,6 @@ extension SFNotify {
             return [translation, opacity]
         })
     }
-    
     /// dismiss
     public func dismiss() {
         view.dismiss()
