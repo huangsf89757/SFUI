@@ -1,0 +1,23 @@
+{
+  "sourceLanguage" : "zh-Hans",
+  "strings" : {
+    "noData" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No data available"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "暂无数据"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

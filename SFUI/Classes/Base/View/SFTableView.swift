@@ -14,6 +14,7 @@ import SFBase
 import Then
 import SnapKit
 import SnapKitExtend
+import EmptyDataSet_Swift
 
 // MARK: - SFTableView
 open class SFTableView: UITableView {
@@ -25,6 +26,40 @@ open class SFTableView: UITableView {
         if #available(iOS 15.0, *) { sectionHeaderTopPadding = 0 }
         rowHeight = UITableView.automaticDimension
         tableFooterView = UIView()
+        emptyDataSetView { view in
+//            var title = NSMutableAttributedString(string: SFText.UI.noData)
+//            let range = NSRange(location: 0, length: title.length)
+//            title.setAttributes([
+//                .font: UIFont.systemFont(ofSize: 12, weight: .regular)
+//            ], range: range)
+            view.image(SFImage.UI.Com.noData)
+        }
+        /*
+         tableView.emptyDataSetView { view in
+             view.titleLabelString(titleString)
+                 .detailLabelString(detailString)
+                 .image(image)
+                 .imageAnimation(imageAnimation)
+                 .buttonTitle(buttonTitle, for: .normal)
+                 .buttonTitle(buttonTitle, for: .highlighted)
+                 .buttonBackgroundImage(buttonBackgroundImage, for: .normal)
+                 .buttonBackgroundImage(buttonBackgroundImage, for: .highlighted)
+                 .dataSetBackgroundColor(backgroundColor)
+                 .verticalOffset(verticalOffset)
+                 .verticalSpace(spaceHeight)
+                 .shouldDisplay(true, view: tableView)
+                 .shouldFadeIn(true)
+                 .isTouchAllowed(true)
+                 .isScrollAllowed(true)
+                 .isImageViewAnimateAllowed(isLoading)
+                 .didTapDataButton {
+                     // Do something
+                 }
+                 .didTapContentView {
+                     // Do something
+                 }
+         }
+         */
     }
     
     @available(*, unavailable)

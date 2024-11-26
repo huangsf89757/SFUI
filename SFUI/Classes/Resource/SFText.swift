@@ -20,9 +20,11 @@ extension SFText {
     
     public struct UI {
         public static var bundle = SFUILib.bundle
-//        private static func font(name: String) -> UIImage? {
-//            UIImage.sf.image(name: name, bundle: Self.bundle)
-//        }
+        private static func text(name: String) -> String {
+            NSLocalizedString(name, bundle: Self.bundle ?? .main, comment: name)
+        }
+        
+        public static var noData: String { text(name: "noData") }
     }
 }
 
