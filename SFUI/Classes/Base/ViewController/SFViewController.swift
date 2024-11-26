@@ -88,23 +88,17 @@ open class SFViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-}
-
-
-// MARK: - back
-extension SFViewController {
+    // MARK: back
     public enum SFBackType {
         case one
         case root
         case count(Int)
         
     }
-    
     /// 是否可以返回
     open func willBack() -> (will: Bool, animated: Bool) {
         return (will: true, animated: true)
     }
-    
     /// 执行返回
     open func goBack(animated: Bool) {
         if let presentingViewController = presentingViewController {
@@ -121,12 +115,14 @@ extension SFViewController {
             // log
         }
     }
-    
     /// 完成返回
     open func finishBack() {
         
-    }
-    
+    }    
+}
+
+// MARK: - action
+extension SFViewController {
     @objc
     private func backBtnClicked() {
         let (will, animated) = willBack()
@@ -134,7 +130,6 @@ extension SFViewController {
         goBack(animated: animated)
     }
 }
-
 
 // MARK: - app life
 extension SFViewController {

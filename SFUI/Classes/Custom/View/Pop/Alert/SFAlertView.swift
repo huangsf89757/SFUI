@@ -475,7 +475,7 @@ extension SFAlertView {
         }
     }
     
-    /// 点击取消
+    /// 点击确定
     @objc private func sureBtnClicked() {
         if let sureActionBlock = sureActionBlock {
             let shouldDismiss = sureActionBlock(self)
