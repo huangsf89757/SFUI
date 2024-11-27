@@ -25,6 +25,8 @@ open class SFTableView: UITableView {
         contentInsetAdjustmentBehavior = .never
         if #available(iOS 15.0, *) { sectionHeaderTopPadding = 0 }
         rowHeight = UITableView.automaticDimension
+        sectionHeaderHeight = UITableView.automaticDimension
+        sectionFooterHeight = UITableView.automaticDimension
         tableFooterView = UIView()
         emptyDataSetView { view in
 //            var title = NSMutableAttributedString(string: SFText.UI.noData)
