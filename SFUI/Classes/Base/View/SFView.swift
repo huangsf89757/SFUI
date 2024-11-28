@@ -20,7 +20,6 @@ open class SFView: UIView {
     // MARK: life cycle
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = SFColor.UI.content
     }
     
     @available(*, unavailable)
