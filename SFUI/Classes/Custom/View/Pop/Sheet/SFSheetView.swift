@@ -1,5 +1,5 @@
 //
-//  SFAlertView.swift
+//  SFSheetView.swift
 //  SFUI
 //
 //  Created by hsf on 2024/11/28.
@@ -13,8 +13,8 @@ import SFBase
 import Then
 import SnapKit
 
-// MARK: - SFAlertView
-final class SFAlertView: SFPopView {
+// MARK: - SFSheetView
+final class SFSheetView: SFPopView {
     // MARK: block
     /// cancel点击回调
     var cancelActionBlock: ((SFPopView) -> Bool)?
@@ -25,7 +25,7 @@ final class SFAlertView: SFPopView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .clear
-        self.sf.setCornerAndShadow(radius: 10, fillColor: SFColor.UI.content, shadowColor: SFColor.UI.black, shadowOpacity: 0.3, shadowOffset: .zero, shadowRadius: 5)
+        self.sf.setCornerAndShadow(radius: 10, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner], fillColor: SFColor.UI.content, shadowColor: SFColor.UI.black, shadowOpacity: 0.3, shadowOffset: .zero, shadowRadius: 5)
         maskConfigeration.color = .clear
         maskConfigeration.clickEnable = true
         autoDismissWhenClickMask = false
@@ -33,9 +33,7 @@ final class SFAlertView: SFPopView {
     
     override func customLayout() {
         self.snp.remakeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.centerX.equalToSuperview()
-            make.width.equalTo(SFApp.screenWidthPortrait() - 60)
+            make.leading.trailing.bottom.equalToSuperview()
         }
         customUI()
     }
@@ -50,12 +48,16 @@ final class SFAlertView: SFPopView {
             view.layer.cornerRadius = 10
         }
     }()
+    lazy var indicatorView: SFView = {
+        return SFView().then { view in
+            view.backgroundColor = SFColor.UI.theme
+        }
+    }()
     lazy var titleLabel: SFLabel = {
         return SFLabel().then { view in
             view.font = .systemFont(ofSize: 20, weight: .bold)
             view.textColor = SFColor.UI.title
             view.numberOfLines = 0
-            view.textAlignment = .center
         }
     }()
     lazy var msgLabel: SFLabel = {
@@ -63,46 +65,54 @@ final class SFAlertView: SFPopView {
             view.font = .systemFont(ofSize: 17, weight: .regular)
             view.textColor =  SFColor.UI.title
             view.numberOfLines = 0
-            view.textAlignment = .center
         }
     }()
-    lazy var dividerView1: SFView = {
-        return SFView().then { view in
-            view.backgroundColor = SFColor.UI.divider
-        }
-    }()
-    lazy var dividerView2: SFView = {
+    lazy var dividerView: SFView = {
         return SFView().then { view in
             view.backgroundColor = SFColor.UI.divider
         }
     }()
     lazy var cancelBtn: SFButton = {
         return SFButton().then { view in
+            view.backgroundColor = SFColor.UI.content
             view.setTitleColor(SFColor.UI.gray, for: .normal)
+            view.layer.cornerRadius = 6
+            view.layer.borderWidth = 1
+            view.layer.borderColor = SFColor.UI.gray?.cgColor
             view.addTarget(self, action: #selector(cancelBtnAction), for: .touchUpInside)
         }
     }()
     lazy var sureBtn: SFButton = {
         return SFButton().then { view in
-            view.setTitleColor(SFColor.UI.theme, for: .normal)
+            view.backgroundColor = SFColor.UI.theme
+            view.setTitleColor(SFColor.UI.whiteAlways, for: .normal)
+            view.layer.cornerRadius = 6
+            view.layer.borderWidth = 1
+            view.layer.borderColor = SFColor.UI.theme?.cgColor
             view.addTarget(self, action: #selector(sureBtnAction), for: .touchUpInside)
         }
     }()
     private func customUI() {
         addSubview(contentView)
+        contentView.addSubview(indicatorView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(msgLabel)
-        contentView.addSubview(dividerView1)
-        contentView.addSubview(dividerView2)
+        contentView.addSubview(dividerView)
         contentView.addSubview(cancelBtn)
         contentView.addSubview(sureBtn)
         
         contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        titleLabel.snp.makeConstraints { make in
+        indicatorView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
             make.leading.equalToSuperview().offset(10)
+            make.width.equalTo(4)
+            make.height.equalTo(20)
+        }
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(indicatorView)
+            make.leading.equalTo(indicatorView.snp.trailing).offset(6)
             make.trailing.equalToSuperview().offset(-10)
         }
         msgLabel.snp.makeConstraints { make in
@@ -110,36 +120,30 @@ final class SFAlertView: SFPopView {
             make.leading.equalTo(titleLabel)
             make.trailing.equalTo(titleLabel)
         }
-        dividerView1.snp.makeConstraints { make in
-            make.top.equalTo(msgLabel.snp.bottom).offset(20)
-            make.leading.trailing.equalToSuperview()
+        dividerView.snp.makeConstraints { make in
+            make.top.equalTo(msgLabel.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
             make.height.equalTo(1)
         }
-        dividerView2.snp.makeConstraints { make in
-            make.top.equalTo(dividerView1.snp.bottom)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(1)
-            make.bottom.equalToSuperview()
-        }
         cancelBtn.snp.makeConstraints { make in
-            make.top.equalTo(dividerView1.snp.bottom)
-            make.leading.equalToSuperview()
-            make.trailing.equalTo(dividerView2.snp.leading)
+            make.top.equalTo(dividerView.snp.bottom).offset(20)
+            make.leading.equalToSuperview().offset(20)
             make.height.equalTo(50)
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-(SFApp.safeAreaInsets().bottom + 20))
         }
         sureBtn.snp.makeConstraints { make in
-            make.top.equalTo(dividerView1.snp.bottom)
-            make.leading.equalTo(dividerView2.snp.trailing)
-            make.trailing.equalToSuperview()
-            make.height.equalTo(50)
-            make.bottom.equalToSuperview()
+            make.centerY.equalTo(cancelBtn)
+            make.leading.equalTo(cancelBtn.snp.trailing).offset(20)
+            make.height.equalTo(cancelBtn)
+            make.width.equalTo(cancelBtn)
+            make.trailing.equalToSuperview().offset(-20)
         }
     }
 }
 
 // MARK: - Action
-extension SFAlertView {
+extension SFSheetView {
     @objc private func cancelBtnAction() {
         if let cancelActionBlock = cancelActionBlock {
             let shouldDismiss = cancelActionBlock(self)
@@ -162,4 +166,3 @@ extension SFAlertView {
         }
     }
 }
-

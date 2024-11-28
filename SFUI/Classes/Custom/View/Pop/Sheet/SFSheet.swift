@@ -1,5 +1,5 @@
 //
-//  SFAlert.swift
+//  SFSheet.swift
 //  SFUI
 //
 //  Created by hsf on 2024/11/28.
@@ -8,17 +8,17 @@
 import Foundation
 import UIKit
 
-// MARK: - SFAlert
-public final class SFAlert {
+// MARK: - SFSheet
+public final class SFSheet {
     // MARK: singleton
-    public static let shared = SFAlert()
+    public static let shared = SFSheet()
     public init() {}
     
     
     // MARK: var
     /// notify view
-    private lazy var view: SFAlertView = {
-        return SFAlertView()
+    private lazy var view: SFSheetView = {
+        return SFSheetView()
     }()
     /// 唯一标识
     public var identifier: String = UUID().uuidString {
@@ -34,7 +34,7 @@ public final class SFAlert {
  注意⚠️
  使用类方法，同一时间只能有一个sheetView
  */
-extension SFAlert {
+extension SFSheet {
     /// show
     public static func show(title: String?,
                             msg: String? = nil,
@@ -42,7 +42,7 @@ extension SFAlert {
                             cancelActionBlock: ((SFPopView) -> Bool)? = nil,
                             sure: String?,
                             sureActionBlock: ((SFPopView) -> Bool)? = nil) {
-        SFAlert.shared.show(title: title,
+        SFSheet.shared.show(title: title,
                             msg: msg,
                             cancel: cancel,
                             cancelActionBlock: cancelActionBlock,
@@ -52,7 +52,7 @@ extension SFAlert {
     
     /// dismiss
     public static func dismiss() {
-        SFAlert.shared.dismiss()
+        SFSheet.shared.dismiss()
     }
 }
 
@@ -62,10 +62,10 @@ extension SFAlert {
  注意⚠️
  使用对象方法，同一时间能有多个sheetView
  */
-extension SFAlert {
+extension SFSheet {
     /// show
     public func show(title: String?,
-                     msg: String? = nil,
+                     msg: String? = nil, 
                      cancel: String?,
                      cancelActionBlock: ((SFPopView) -> Bool)? = nil,
                      sure: String?,
@@ -78,12 +78,12 @@ extension SFAlert {
         view.sureActionBlock = sureActionBlock
         view.show(showAnimationsBlock: {
             popView in
-            let translation = popView.animationOfTranslation(from: .offset(0, 50), to: .zero)
+            let translation = popView.animationOfTranslation(from: .bottom, to: .zero)
             let opacity = popView.animationOfOpacity(from: 0, to: 1)
             return [translation, opacity]
         }, dismissAnimationsBlock: {
             popView in
-            let translation = popView.animationOfTranslation(from: .zero, to: .offset(0, 50))
+            let translation = popView.animationOfTranslation(from: .zero, to: .bottom)
             let opacity = popView.animationOfOpacity(from: 1, to: 0)
             return [translation, opacity]
         })
