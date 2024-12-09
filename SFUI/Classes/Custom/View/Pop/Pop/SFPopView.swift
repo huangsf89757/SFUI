@@ -39,7 +39,7 @@ open class SFPopView: SFView {
     /// 显示状态
     public private(set) var status: Status = .none {
         didSet {
-            SFLogger.debug("statusChangedTo: \(status)")
+            SFLogger.debug(messages: "statusChangedTo: \(status)")
             statusChangedBlock?(status)
         }
     }
@@ -147,7 +147,7 @@ extension SFPopView {
         self.setNeedsLayout()
         self.layoutIfNeeded()
         
-        SFLogger.debug("frame=\(frame)")
+        SFLogger.debug(messages: "frame=\(frame)")
         return true
     }
     
