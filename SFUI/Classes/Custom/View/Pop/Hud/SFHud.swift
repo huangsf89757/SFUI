@@ -41,6 +41,23 @@ public final class SFHud {
                 return SFImage.UI.Hud.error
             }
         }
+        
+        public var text: String {
+            switch self {
+            case .loading:
+                return SFText.UI.Hud.loading
+            case .success:
+                return SFText.UI.Hud.success
+            case .failure:
+                return SFText.UI.Hud.failure
+            case .info:
+                return SFText.UI.Hud.info
+            case .warning:
+                return SFText.UI.Hud.warning
+            case .error:
+                return SFText.UI.Hud.error
+            }
+        }
     }
     
     
@@ -66,7 +83,7 @@ public final class SFHud {
 extension SFHud {
     /// show
     public static func show(_ style: Style,
-                            msg: String,
+                            msg: String? = nil,
                             offset: CGFloat = 0,
                             stay duration: TimeInterval? = nil,
                             closeTime: TimeInterval = 5,
@@ -93,13 +110,13 @@ extension SFHud {
 extension SFHud {
     /// show
     public func show(_ style: Style,
-                     msg: String,
+                     msg: String? = nil,
                      offset: CGFloat = 0,
                      stay duration: TimeInterval? = nil,
                      closeTime: TimeInterval = 5,
                      closeBlock: ((SFPopView)->())? = nil) {
         view.style = style
-        view.msg = msg
+        view.msg = msg ?? style.text
         view.offset = offset
         view.closeTime = closeTime
         view.closeBlock = closeBlock

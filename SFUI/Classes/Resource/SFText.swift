@@ -25,6 +25,15 @@ extension SFText {
         }
         
         public static var noData: String { text(name: "noData") }
+        public struct Hud {
+            public static var loading: String { text(name: "hud_loading") }
+            public static var success: String { text(name: "hud_success") }
+            public static var failure: String { text(name: "hud_failure") }
+            public static var info: String { text(name: "hud_info") }
+            public static var warning: String { text(name: "hud_warning") }
+            public static var error: String { text(name: "hud_error") }
+        }
+        
     }
 }
 
