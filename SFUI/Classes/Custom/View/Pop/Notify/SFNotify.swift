@@ -64,24 +64,28 @@ extension SFNotify {
                      msg: String? = nil,
                      icon: UIImage? = nil,
                      stay duration: TimeInterval? = 5) {
-        view.icon = icon
-        view.title = title
-        view.msg = msg
-        view.show(stay: duration, showAnimationsBlock: {
-            popView in
-            let showAnimationOfTranslation = popView.animationOfTranslation(from: .top, to: .zero)
-            let showAnimationOfOpacity = popView.animationOfOpacity(from: 0, to: 1)
-            return [showAnimationOfTranslation, showAnimationOfOpacity]
-        }, dismissAnimationsBlock: {
-            popView in
-            let translation = popView.animationOfTranslation(from: .zero, to: .top)
-            let opacity = popView.animationOfOpacity(from: 1, to: 0)
-            return [translation, opacity]
-        })
+        DispatchQueue.main.async {
+            self.view.icon = icon
+            self.view.title = title
+            self.view.msg = msg
+            self.view.show(stay: duration, showAnimationsBlock: {
+                popView in
+                let showAnimationOfTranslation = popView.animationOfTranslation(from: .top, to: .zero)
+                let showAnimationOfOpacity = popView.animationOfOpacity(from: 0, to: 1)
+                return [showAnimationOfTranslation, showAnimationOfOpacity]
+            }, dismissAnimationsBlock: {
+                popView in
+                let translation = popView.animationOfTranslation(from: .zero, to: .top)
+                let opacity = popView.animationOfOpacity(from: 1, to: 0)
+                return [translation, opacity]
+            })
+        }
     }
     
     /// dismiss
     public func dismiss() {
-        view.dismiss()
+        DispatchQueue.main.async {
+            self.view.dismiss()
+        }
     }
 }

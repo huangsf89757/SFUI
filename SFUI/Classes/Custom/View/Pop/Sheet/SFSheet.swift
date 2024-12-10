@@ -70,27 +70,31 @@ extension SFSheet {
                      cancelActionBlock: ((SFPopView) -> Bool)? = nil,
                      sure: String?,
                      sureActionBlock: ((SFPopView) -> Bool)? = nil) {
-        view.titleLabel.text = title
-        view.msgLabel.text = msg
-        view.cancelBtn.setTitle(cancel, for: .normal)
-        view.cancelActionBlock = cancelActionBlock
-        view.sureBtn.setTitle(sure, for: .normal)
-        view.sureActionBlock = sureActionBlock
-        view.show(showAnimationsBlock: {
-            popView in
-            let translation = popView.animationOfTranslation(from: .bottom, to: .zero)
-            let opacity = popView.animationOfOpacity(from: 0, to: 1)
-            return [translation, opacity]
-        }, dismissAnimationsBlock: {
-            popView in
-            let translation = popView.animationOfTranslation(from: .zero, to: .bottom)
-            let opacity = popView.animationOfOpacity(from: 1, to: 0)
-            return [translation, opacity]
-        })
+        DispatchQueue.main.async {
+            self.view.titleLabel.text = title
+            self.view.msgLabel.text = msg
+            self.view.cancelBtn.setTitle(cancel, for: .normal)
+            self.view.cancelActionBlock = cancelActionBlock
+            self.view.sureBtn.setTitle(sure, for: .normal)
+            self.view.sureActionBlock = sureActionBlock
+            self.view.show(showAnimationsBlock: {
+                popView in
+                let translation = popView.animationOfTranslation(from: .bottom, to: .zero)
+                let opacity = popView.animationOfOpacity(from: 0, to: 1)
+                return [translation, opacity]
+            }, dismissAnimationsBlock: {
+                popView in
+                let translation = popView.animationOfTranslation(from: .zero, to: .bottom)
+                let opacity = popView.animationOfOpacity(from: 1, to: 0)
+                return [translation, opacity]
+            })
+        }
     }
     
     /// dismiss
     public func dismiss() {
-        view.dismiss()
+        DispatchQueue.main.async {
+            self.view.dismiss()
+        }
     }
 }

@@ -115,26 +115,30 @@ extension SFHud {
                      stay duration: TimeInterval? = nil,
                      closeTime: TimeInterval = 5,
                      closeBlock: ((SFPopView)->())? = nil) {
-        view.style = style
-        view.msg = msg ?? style.text
-        view.offset = offset
-        view.closeTime = closeTime
-        view.closeBlock = closeBlock
-        view.show(stay: duration, showAnimationsBlock: {
-            popView in
-            let showAnimationOfScale = popView.animationOfScale(from: 0.8, to: 1)
-            let showAnimationOfOpacity = popView.animationOfOpacity(from: 0, to: 1)
-            return [showAnimationOfScale, showAnimationOfOpacity]
-        }, dismissAnimationsBlock: {
-            popView in
-            let scale = popView.animationOfScale(from: 1, to: 0.8)
-            let opacity = popView.animationOfOpacity(from: 1, to: 0)
-            return [scale, opacity]
-        })
+        DispatchQueue.main.async {
+            self.view.style = style
+            self.view.msg = msg ?? style.text
+            self.view.offset = offset
+            self.view.closeTime = closeTime
+            self.view.closeBlock = closeBlock
+            self.view.show(stay: duration, showAnimationsBlock: {
+                popView in
+                let showAnimationOfScale = popView.animationOfScale(from: 0.8, to: 1)
+                let showAnimationOfOpacity = popView.animationOfOpacity(from: 0, to: 1)
+                return [showAnimationOfScale, showAnimationOfOpacity]
+            }, dismissAnimationsBlock: {
+                popView in
+                let scale = popView.animationOfScale(from: 1, to: 0.8)
+                let opacity = popView.animationOfOpacity(from: 1, to: 0)
+                return [scale, opacity]
+            })
+        }
     }
     
     /// dismiss
     public func dismiss() {
-        view.dismiss()
+        DispatchQueue.main.async {
+            self.view.dismiss()
+        }
     }
 }

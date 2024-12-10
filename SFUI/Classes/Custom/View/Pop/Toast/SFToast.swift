@@ -68,24 +68,28 @@ extension SFToast {
     public func show(_ msg: String,
                      at position: Position = .center(offset: 0),
                      stay duration: TimeInterval? = 2) {
-        view.position = position
-        view.msg = msg
-        view.show(stay: duration, showAnimationsBlock: {
-            popView in
-            let showAnimationOfTranslation = popView.animationOfTranslation(from: .offset(0, 30), to: .zero)
-            let showAnimationOfOpacity = popView.animationOfOpacity(from: 0, to: 1)
-            return [showAnimationOfTranslation, showAnimationOfOpacity]
-        }, dismissAnimationsBlock: {
-            popView in
-            let translation = popView.animationOfTranslation(from: .zero, to: .offset(0, 30))
-            let opacity = popView.animationOfOpacity(from: 1, to: 0)
-            return [translation, opacity]
-        })
+        DispatchQueue.main.async {
+            self.view.position = position
+            self.view.msg = msg
+            self.view.show(stay: duration, showAnimationsBlock: {
+                popView in
+                let showAnimationOfTranslation = popView.animationOfTranslation(from: .offset(0, 30), to: .zero)
+                let showAnimationOfOpacity = popView.animationOfOpacity(from: 0, to: 1)
+                return [showAnimationOfTranslation, showAnimationOfOpacity]
+            }, dismissAnimationsBlock: {
+                popView in
+                let translation = popView.animationOfTranslation(from: .zero, to: .offset(0, 30))
+                let opacity = popView.animationOfOpacity(from: 1, to: 0)
+                return [translation, opacity]
+            })
+        }
     }
     
     /// dismiss
     public func dismiss() {
-        view.dismiss()
+        DispatchQueue.main.async {
+            self.view.dismiss()
+        }
     }
 }
 
