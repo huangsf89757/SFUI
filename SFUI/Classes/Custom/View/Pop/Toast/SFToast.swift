@@ -45,7 +45,7 @@ extension SFToast {
     /// show
     public static func show(_ msg: String,
                             at position: Position = .center(offset: 0),
-                            stay duration: TimeInterval? = 2) {
+                            stay duration: TimeInterval? = 1.5) {
         SFToast.shared.show(msg,
                             at: position,
                             stay: duration)
@@ -67,7 +67,7 @@ extension SFToast {
     /// show
     public func show(_ msg: String,
                      at position: Position = .center(offset: 0),
-                     stay duration: TimeInterval? = 2) {
+                     stay duration: TimeInterval? = 1.5) {
         DispatchQueue.main.async {
             self.view.position = position
             self.view.msg = msg

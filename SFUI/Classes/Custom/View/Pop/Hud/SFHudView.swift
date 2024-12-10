@@ -29,6 +29,7 @@ final class SFHudView: SFPopView {
     var offset: CGFloat = 0
     /// show后多长时间显示closeBtn
     var closeTime: TimeInterval = 5
+    var closeTimeTask: DispatchWorkItem?
     /// 点击close的回调
     var closeBlock: ((SFPopView)->())?
     
@@ -49,11 +50,16 @@ final class SFHudView: SFPopView {
             case .willShow:
                 self.closeBtn.alpha = 0
             case .didShow:
-                DispatchQueue.main.asyncAfter(wallDeadline: .now() + self.closeTime) {
-                    UIView.animate(withDuration: 1, animations: {
-                        self.closeBtn.alpha = 1
-                    })
+                self.closeTimeTask?.cancel()
+                let task = DispatchWorkItem {
+                    DispatchQueue.main.async {
+                        UIView.animate(withDuration: 1, animations: {
+                            self.closeBtn.alpha = 1
+                        })
+                    }
                 }
+                DispatchQueue.main.asyncAfter(wallDeadline: .now() + self.closeTime, execute: task)
+                self.closeTimeTask = task
             default:
                 break
             }
