@@ -39,7 +39,6 @@ open class SFPopView: SFView {
     /// 显示状态
     public private(set) var status: Status = .none {
         didSet {
-            SFLogger.debug(msgs: "statusChangedTo: \(status)")
             statusChangedBlock?(status)
         }
     }
@@ -67,6 +66,10 @@ open class SFPopView: SFView {
     // MARK: override
     /// 自定义约束
     open func customLayout() {
+        #warning("自定义时重写")
+    }
+    /// frame已确定
+    open func frameDetermined() {
         #warning("自定义时重写")
     }
         
@@ -141,13 +144,11 @@ extension SFPopView {
         if topLevel || !isVisible {
             SFPopManager.shared.show(identifier: self.identifier, window: window)
         }
-        
         window.setNeedsLayout()
         window.layoutIfNeeded()
         self.setNeedsLayout()
         self.layoutIfNeeded()
-        
-        SFLogger.debug(msgs: "frame=\(frame)")
+        frameDetermined()
         return true
     }
     

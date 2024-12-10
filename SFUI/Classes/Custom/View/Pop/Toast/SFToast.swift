@@ -72,12 +72,12 @@ extension SFToast {
         view.msg = msg
         view.show(stay: duration, showAnimationsBlock: {
             popView in
-            let showAnimationOfTranslation = popView.animationOfTranslation(from: .bottom, to: .zero)
+            let showAnimationOfTranslation = popView.animationOfTranslation(from: .offset(0, 30), to: .zero)
             let showAnimationOfOpacity = popView.animationOfOpacity(from: 0, to: 1)
             return [showAnimationOfTranslation, showAnimationOfOpacity]
         }, dismissAnimationsBlock: {
             popView in
-            let translation = popView.animationOfTranslation(from: .zero, to: .bottom)
+            let translation = popView.animationOfTranslation(from: .zero, to: .offset(0, 30))
             let opacity = popView.animationOfOpacity(from: 1, to: 0)
             return [translation, opacity]
         })
