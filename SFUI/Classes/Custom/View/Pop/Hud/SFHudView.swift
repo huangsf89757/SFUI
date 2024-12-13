@@ -38,7 +38,6 @@ final class SFHudView: SFPopView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .clear
-        self.sf.setCornerAndShadow(radius: 20, fillColor: SFColor.UI.background, shadowColor: SFColor.UI.black, shadowOpacity: 0.3, shadowOffset: .zero, shadowRadius: 5)
         maskConfigeration.color = .clear
         maskConfigeration.clickEnable = true
         autoDismissWhenClickMask = false
@@ -83,7 +82,9 @@ final class SFHudView: SFPopView {
             imgView.layer.add(anim, forKey: "rotation")
         }
     }
-    override func draw(_ rect: CGRect) {
+    
+    override func frameDetermined() {
+        self.sf.setCornerAndShadow(radius: 20, fillColor: SFColor.UI.background, shadowColor: SFColor.UI.black, shadowOpacity: 0.3, shadowOffset: .zero, shadowRadius: 5)
         self.sf.applyCornerAndShadow()
     }
     

@@ -25,20 +25,18 @@ final class SFSheetView: SFPopView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .clear
-        self.sf.setCornerAndShadow(radius: 10, maskedCorners: [.layerMinXMinYCorner, .layerMaxXMinYCorner], fillColor: SFColor.UI.content, shadowColor: SFColor.UI.black, shadowOpacity: 0.3, shadowOffset: .zero, shadowRadius: 5)
         maskConfigeration.color = .clear
         maskConfigeration.clickEnable = true
         autoDismissWhenClickMask = false
     }
-    
     override func customLayout() {
         self.snp.remakeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
         }
         customUI()
     }
-    
-    override func draw(_ rect: CGRect) {
+    override func frameDetermined() {
+        self.sf.setCornerAndShadow(radius: 20, fillColor: SFColor.UI.background, shadowColor: SFColor.UI.black, shadowOpacity: 0.3, shadowOffset: .zero, shadowRadius: 5)
         self.sf.applyCornerAndShadow()
     }
     

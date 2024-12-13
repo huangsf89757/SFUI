@@ -35,7 +35,6 @@ final class SFToastView: SFPopView {
         autoDismissWhenClickMask = false
         customUI()
     }
-    
     override func customLayout() {
         self.snp.remakeConstraints { make in
             switch position {
@@ -53,7 +52,6 @@ final class SFToastView: SFPopView {
             make.height.lessThanOrEqualTo(SFApp.screenHeightPortrait() - 60)
         }
     }
-    
     override func frameDetermined() {
         self.sf.setCornerAndShadow(radius: 20, fillColor: SFColor.UI.background, shadowColor: SFColor.UI.black, shadowOpacity: 0.3, shadowOffset: .zero, shadowRadius: 5)
         self.sf.applyCornerAndShadow()
