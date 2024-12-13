@@ -25,7 +25,6 @@ final class SFAlertView: SFPopView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .clear
-        maskConfigeration.color = .clear
         maskConfigeration.clickEnable = true
         autoDismissWhenClickMask = false
     }
@@ -76,7 +75,7 @@ final class SFAlertView: SFPopView {
     }()
     lazy var cancelBtn: SFButton = {
         return SFButton().then { view in
-            view.setTitleColor(SFColor.UI.gray, for: .normal)
+            view.setTitleColor(SFColor.UI.darkGray, for: .normal)
             view.addTarget(self, action: #selector(cancelBtnAction), for: .touchUpInside)
         }
     }()
