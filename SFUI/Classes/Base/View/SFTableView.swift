@@ -15,6 +15,7 @@ import Then
 import SnapKit
 import SnapKitExtend
 import EmptyDataSet_Swift
+import MJRefresh
 
 // MARK: - SFTableView
 open class SFTableView: UITableView {
@@ -28,6 +29,9 @@ open class SFTableView: UITableView {
         sectionHeaderHeight = UITableView.automaticDimension
         sectionFooterHeight = UITableView.automaticDimension
         tableFooterView = UIView()
+        
+        emptyDataSetSource = self
+        emptyDataSetDelegate = self
         emptyDataSetView { view in
 //            var title = NSMutableAttributedString(string: SFText.UI.noData)
 //            let range = NSRange(location: 0, length: title.length)
@@ -74,6 +78,28 @@ open class SFTableView: UITableView {
     public func stopScrolling() {
         setContentOffset(contentOffset, animated: false)
     }
+    
+    // MARK: MJRefresh
+    /// 下拉刷新
+    public var headerRefreshBlock: (()->())? {
+        didSet {
+            if let headerRefreshBlock = headerRefreshBlock {
+                mj_header = MJRefreshNormalHeader(refreshingBlock: headerRefreshBlock)
+            } else {
+                mj_header = nil
+            }
+        }
+    }
+    /// 上拉加载
+    public var footerRefreshBlock: (()->())? {
+        didSet {
+            if let footerRefreshBlock = footerRefreshBlock {
+                mj_footer = MJRefreshBackNormalFooter(refreshingBlock: footerRefreshBlock)
+            } else {
+                mj_footer = nil
+            }
+        }
+    }
 }
 
 // MARK: - position
@@ -97,5 +123,12 @@ extension SFTableView {
             }
         }
         cell.position = position
+    }
+}
+
+// MARK: - EmptyDataSet
+extension SFTableView: EmptyDataSetSource, EmptyDataSetDelegate {
+    public func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView) -> Bool {
+        return true
     }
 }

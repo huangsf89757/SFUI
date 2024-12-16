@@ -54,6 +54,7 @@ TODO: Add long description of the pod here.
   s.dependency 'Reusable',                    '~> 4.1.2'
   s.dependency 'IQKeyboardManagerSwift',      '~> 6.5.16'
   s.dependency 'EmptyDataSet-Swift',          '~> 5.0.0'
+  s.dependency 'MJRefresh',                   '~> 3.7.9'
   
 end
 
