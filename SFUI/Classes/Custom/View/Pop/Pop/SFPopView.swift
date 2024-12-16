@@ -305,8 +305,6 @@ extension SFPopView {
             case .zero:
                 value = .zero
             case .top:
-                print("frame=\(frame)")
-                print("superViewRect=\(superViewRect)")
                 value = CGPoint(x: 0, y: -frame.size.height)
 //                value = CGPoint(x: 0, y: -superViewRect.height)
             case .bottom:
