@@ -45,17 +45,17 @@ public final class SFHud {
         public var text: String {
             switch self {
             case .loading:
-                return SFText.UI.Hud.loading
+                return SFText.UI.hud_loading
             case .success:
-                return SFText.UI.Hud.success
+                return SFText.UI.hud_success
             case .failure:
-                return SFText.UI.Hud.failure
+                return SFText.UI.hud_failure
             case .info:
-                return SFText.UI.Hud.info
+                return SFText.UI.hud_info
             case .warning:
-                return SFText.UI.Hud.warning
+                return SFText.UI.hud_warning
             case .error:
-                return SFText.UI.Hud.error
+                return SFText.UI.hud_error
             }
         }
     }
