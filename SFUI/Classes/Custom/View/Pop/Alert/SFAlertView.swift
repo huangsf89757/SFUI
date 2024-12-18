@@ -14,12 +14,9 @@ import Then
 import SnapKit
 
 // MARK: - SFAlertView
-final class SFAlertView: SFPopView {
+public final class SFAlertView: SFPopView {
     // MARK: block
-    /// cancel点击回调
-    var cancelActionBlock: ((SFPopView) -> Bool)?
-    /// sure点击回调
-    var sureActionBlock: ((SFPopView) -> Bool)?
+    var actionBlockMap: [Int: ((SFAlertView) -> Bool)] = [:]
     
     // MARK: life cycle
     override init(frame: CGRect) {
@@ -28,7 +25,7 @@ final class SFAlertView: SFPopView {
         maskConfigeration.clickEnable = true
         autoDismissWhenClickMask = false
     }
-    override func customLayout() {
+    public override func customLayout() {
         self.snp.remakeConstraints { make in
             make.centerY.equalToSuperview()
             make.centerX.equalToSuperview()
@@ -36,7 +33,7 @@ final class SFAlertView: SFPopView {
         }
         customUI()
     }
-    override func frameDetermined() {
+    public override func frameDetermined() {
         self.sf.setCornerAndShadow(radius: 20, fillColor: SFColor.UI.background, shadowColor: SFColor.UI.black, shadowOpacity: 0.3, shadowOffset: .zero, shadowRadius: 5)
         self.sf.applyCornerAndShadow()
     }
@@ -45,8 +42,23 @@ final class SFAlertView: SFPopView {
     lazy var contentView: SFView = {
         return SFView().then { view in
             view.layer.cornerRadius = 10
+            view.layer.masksToBounds = true
+            view.backgroundColor = SFColor.UI.content
         }
     }()
+    lazy var infoStackView: UIStackView = {
+        return UIStackView().then { view in
+            view.axis = .vertical
+            view.spacing = 15
+            view.distribution = .fillEqually
+        }
+    }()
+    lazy var actionStackView: UIStackView = {
+        return UIStackView().then { view in
+            view.distribution = .fillEqually
+        }
+    }()
+    
     lazy var titleLabel: SFLabel = {
         return SFLabel().then { view in
             view.font = .systemFont(ofSize: 20, weight: .bold)
@@ -63,100 +75,141 @@ final class SFAlertView: SFPopView {
             view.textAlignment = .center
         }
     }()
-    lazy var dividerView1: SFView = {
-        return SFView().then { view in
-            view.backgroundColor = SFColor.UI.divider
+    lazy var tipLabel: SFLabel = {
+        return SFLabel().then { view in
+            view.font = .systemFont(ofSize: 15, weight: .regular)
+            view.textColor =  SFColor.UI.subtitle
+            view.numberOfLines = 0
+            view.textAlignment = .center
         }
     }()
-    lazy var dividerView2: SFView = {
-        return SFView().then { view in
-            view.backgroundColor = SFColor.UI.divider
+}
+
+// MARK: - Action
+extension SFAlertView {
+    @objc private func actionBtnAction(_ sender: SFButton) {
+        let tag = sender.tag
+        if let otherActionBlock = actionBlockMap[tag] {
+            let shouldDismiss = otherActionBlock(self)
+            if shouldDismiss {
+                dismiss()
+            }
+        } else {
+            dismiss()
         }
-    }()
-    lazy var cancelBtn: SFButton = {
-        return SFButton().then { view in
-            view.setTitleColor(SFColor.UI.darkGray, for: .normal)
-            view.addTarget(self, action: #selector(cancelBtnAction), for: .touchUpInside)
+    }
+}
+
+// MARK: - Init
+extension SFAlertView {
+    func config(title: String?, msg: String? = nil, tip: String? = nil) {
+        reset()
+        titleLabel.text = title
+        infoStackView.addArrangedSubview(titleLabel)
+        if let msg = msg {
+            msgLabel.text = msg
+            infoStackView.addArrangedSubview(msgLabel)
         }
-    }()
-    lazy var sureBtn: SFButton = {
-        return SFButton().then { view in
-            view.setTitleColor(SFColor.UI.theme, for: .normal)
-            view.addTarget(self, action: #selector(sureBtnAction), for: .touchUpInside)
+        if let tip = tip {
+            tipLabel.text = tip
+            infoStackView.addArrangedSubview(tipLabel)
         }
-    }()
-    private func customUI() {
-        addSubview(contentView)
-        contentView.addSubview(titleLabel)
-        contentView.addSubview(msgLabel)
-        contentView.addSubview(dividerView1)
-        contentView.addSubview(dividerView2)
-        contentView.addSubview(cancelBtn)
-        contentView.addSubview(sureBtn)
-        
-        contentView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+    }
+    
+    private func reset() {
+        self.sf.removeAllSubviews()
+        for view in infoStackView.subviews {
+            infoStackView.removeArrangedSubview(view)
+            view.removeFromSuperview()
         }
-        titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
-            make.leading.equalToSuperview().offset(10)
-            make.trailing.equalToSuperview().offset(-10)
+        for view in actionStackView.subviews {
+            infoStackView.removeArrangedSubview(view)
+            view.removeFromSuperview()
         }
-        msgLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(10)
-            make.leading.equalTo(titleLabel)
-            make.trailing.equalTo(titleLabel)
-        }
-        dividerView1.snp.makeConstraints { make in
-            make.top.equalTo(msgLabel.snp.bottom).offset(20)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(1)
-        }
-        dividerView2.snp.makeConstraints { make in
-            make.top.equalTo(dividerView1.snp.bottom)
-            make.centerX.equalToSuperview()
-            make.width.equalTo(1)
-            make.bottom.equalToSuperview()
-        }
-        cancelBtn.snp.makeConstraints { make in
-            make.top.equalTo(dividerView1.snp.bottom)
-            make.leading.equalToSuperview()
-            make.trailing.equalTo(dividerView2.snp.leading)
-            make.height.equalTo(50)
-            make.bottom.equalToSuperview()
-        }
-        sureBtn.snp.makeConstraints { make in
-            make.top.equalTo(dividerView1.snp.bottom)
-            make.leading.equalTo(dividerView2.snp.trailing)
-            make.trailing.equalToSuperview()
-            make.height.equalTo(50)
-            make.bottom.equalToSuperview()
-        }
+        actionBlockMap.removeAll()
     }
 }
 
 // MARK: - Action
 extension SFAlertView {
-    @objc private func cancelBtnAction() {
-        if let cancelActionBlock = cancelActionBlock {
-            let shouldDismiss = cancelActionBlock(self)
-            if shouldDismiss {
-                dismiss()
-            }
-        } else {
-            dismiss()
-        }
+    func addCancelAction(title: String, appearance: ((SFButton)->())? = nil, action: @escaping (SFAlertView) -> Bool) {
+        let btn = createActionBtn(title: title, action: action)
+        btn.setTitleColor(SFColor.UI.darkGray, for: .normal)
+        appearance?(btn)
+        actionStackView.addArrangedSubview(btn)
     }
     
-    @objc private func sureBtnAction() {
-        if let sureActionBlock = sureActionBlock {
-            let shouldDismiss = sureActionBlock(self)
-            if shouldDismiss {
-                dismiss()
-            }
-        } else {
-            dismiss()
+    func addConfirmAction(title: String, appearance: ((SFButton)->())? = nil, action: @escaping (SFAlertView) -> Bool) {
+        let btn = createActionBtn(title: title, action: action)
+        btn.setTitleColor(SFColor.UI.theme, for: .normal)
+        appearance?(btn)
+        actionStackView.addArrangedSubview(btn)
+    }
+    
+    func addAction(title: String, appearance: ((SFButton)->())? = nil, action: @escaping (SFAlertView) -> Bool) {
+        let btn = createActionBtn(title: title, action: action)
+        appearance?(btn)
+        actionStackView.addArrangedSubview(btn)
+    }
+    
+    private func createActionBtn(title: String, action: @escaping (SFAlertView) -> Bool) -> SFButton {
+        let btn = SFButton().then { view in
+            view.backgroundColor = SFColor.UI.content
+            view.setTitle(title, for: .normal)
+            view.setTitleColor(SFColor.UI.title, for: .normal)
+            view.addTarget(self, action: #selector(actionBtnAction(_:)), for: .touchUpInside)
         }
+        btn.tag = actionBlockMap.count
+        actionBlockMap[btn.tag] = action
+        return btn
     }
 }
 
+// MARK: - UI
+extension SFAlertView {
+    private func customUI() {
+        addSubview(contentView)
+        contentView.snp.remakeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        contentView.addSubview(infoStackView)
+        contentView.addSubview(actionStackView)
+        infoStackView.snp.remakeConstraints { make in
+            make.top.equalToSuperview().offset(20)
+            make.leading.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview().offset(-10)
+        }
+        actionStackView.snp.remakeConstraints { make in
+            make.top.equalTo(infoStackView.snp.bottom).offset(20)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        if actionStackView.subviews.count > 2 {
+            actionStackView.backgroundColor = .clear
+            actionStackView.axis = .vertical
+            actionStackView.spacing = 10
+            actionStackView.isLayoutMarginsRelativeArrangement = true
+            actionStackView.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 20, right: 10)
+            for view in actionStackView.subviews {
+                view.layer.cornerRadius = 10
+                view.layer.borderColor = SFColor.UI.divider?.cgColor
+                view.layer.borderWidth = 1
+                view.snp.makeConstraints { make in
+                    make.height.equalTo(40)
+                }
+            }
+        } else {
+            actionStackView.backgroundColor = SFColor.UI.divider
+            actionStackView.axis = .horizontal
+            actionStackView.spacing = 1
+            actionStackView.isLayoutMarginsRelativeArrangement = true
+            actionStackView.layoutMargins = UIEdgeInsets(top: 1, left: 0, bottom: 0, right: 0)
+            for view in actionStackView.subviews {
+                view.snp.makeConstraints { make in
+                    make.height.equalTo(50)
+                }
+            }
+        }
+    }
+}

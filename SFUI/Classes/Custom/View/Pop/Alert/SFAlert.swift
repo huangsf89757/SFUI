@@ -36,18 +36,8 @@ public final class SFAlert {
  */
 extension SFAlert {
     /// show
-    public static func show(title: String?,
-                            msg: String? = nil,
-                            cancel: String?,
-                            cancelActionBlock: ((SFPopView) -> Bool)? = nil,
-                            sure: String?,
-                            sureActionBlock: ((SFPopView) -> Bool)? = nil) {
-        SFAlert.shared.show(title: title,
-                            msg: msg,
-                            cancel: cancel,
-                            cancelActionBlock: cancelActionBlock,
-                            sure: sure,
-                            sureActionBlock: sureActionBlock)
+    public static func show() {
+        SFAlert.shared.show()
     }
     
     /// dismiss
@@ -55,7 +45,22 @@ extension SFAlert {
         SFAlert.shared.dismiss()
     }
 }
-
+extension SFAlert {
+    public static func config(title: String?, msg: String? = nil, tip: String? = nil) {
+        SFAlert.shared.config(title: title, msg: msg, tip: tip)
+    }
+    public static func addCancelAction(title: String, appearance: ((SFButton)->())? = nil, action: @escaping (SFAlertView) -> Bool) {
+        SFAlert.shared.addCancelAction(title: title, appearance: appearance, action: action)
+    }
+    
+    public static func addConfirmAction(title: String, appearance: ((SFButton)->())? = nil, action: @escaping (SFAlertView) -> Bool) {
+        SFAlert.shared.addConfirmAction(title: title, appearance: appearance, action: action)
+    }
+    
+    public static func addAction(title: String, appearance: ((SFButton)->())? = nil, action: @escaping (SFAlertView) -> Bool) {
+        SFAlert.shared.addAction(title: title, appearance: appearance, action: action)
+    }
+}
 
 // MARK: - func (instance)
 /*
@@ -64,19 +69,8 @@ extension SFAlert {
  */
 extension SFAlert {
     /// show
-    public func show(title: String?,
-                     msg: String? = nil,
-                     cancel: String?,
-                     cancelActionBlock: ((SFPopView) -> Bool)? = nil,
-                     sure: String?,
-                     sureActionBlock: ((SFPopView) -> Bool)? = nil) {
+    public func show() {
         DispatchQueue.main.async {
-            self.view.titleLabel.text = title
-            self.view.msgLabel.text = msg
-            self.view.cancelBtn.setTitle(cancel, for: .normal)
-            self.view.cancelActionBlock = cancelActionBlock
-            self.view.sureBtn.setTitle(sure, for: .normal)
-            self.view.sureActionBlock = sureActionBlock
             self.view.show(showAnimationsBlock: {
                 popView in
                 let translation = popView.animationOfTranslation(from: .offset(0, 50), to: .zero)
@@ -96,5 +90,21 @@ extension SFAlert {
         DispatchQueue.main.async {
             self.view.dismiss()
         }
+    }
+}
+extension SFAlert {
+    public func config(title: String?, msg: String? = nil, tip: String? = nil) {
+        self.view.config(title: title, msg: msg, tip: tip)
+    }
+    public func addCancelAction(title: String, appearance: ((SFButton)->())? = nil, action: @escaping (SFAlertView) -> Bool) {
+        self.view.addCancelAction(title: title, appearance: appearance, action: action)
+    }
+    
+    public func addConfirmAction(title: String, appearance: ((SFButton)->())? = nil, action: @escaping (SFAlertView) -> Bool) {
+        self.view.addConfirmAction(title: title, appearance: appearance, action: action)
+    }
+    
+    public func addAction(title: String, appearance: ((SFButton)->())? = nil, action: @escaping (SFAlertView) -> Bool) {
+        self.view.addAction(title: title, appearance: appearance, action: action)
     }
 }
