@@ -20,45 +20,86 @@ extension SFTableView {
         let inset = cell.cardInset
         let rect = cell.bounds.inset(by: inset)
         var path: UIBezierPath?
+        if cell.cardJoin {
+            
+        } else {
+            
+        }
         if rowCount == 1 {
-            if let header = delegate?.tableView?(self, viewForHeaderInSection: indexPath.section) as? SFCardTableViewHeaderFooterView {
+            if let header = delegate?.tableView?(self, viewForHeaderInSection: indexPath.section) as? SFCardTableViewHeaderFooterView, header.cardJoin {
                 effectCorner.remove([.topLeft, .topRight])
             }
-            if let footer = delegate?.tableView?(self, viewForFooterInSection: indexPath.section) as? SFCardTableViewHeaderFooterView {
+            if let footer = delegate?.tableView?(self, viewForFooterInSection: indexPath.section) as? SFCardTableViewHeaderFooterView, footer.cardJoin {
                 effectCorner.remove([.bottomLeft, .bottomRight])
             }
             if effectCorner.contains(.topLeft) || effectCorner.contains(.topRight)
                || effectCorner.contains(.bottomLeft) || effectCorner.contains(.bottomRight) {
                 let corners = effectCorner.intersection([.topLeft, .topRight, .bottomLeft, .bottomRight])
                 path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-            }else{
+            } else {
                 path = UIBezierPath(rect: rect)
             }
         } else {
             if indexPath.row == 0 {
-                if let header = delegate?.tableView?(self, viewForHeaderInSection: indexPath.section) as? SFCardTableViewHeaderFooterView {
+                if let header = delegate?.tableView?(self, viewForHeaderInSection: indexPath.section) as? SFCardTableViewHeaderFooterView, header.cardJoin {
                     effectCorner.remove([.topLeft, .topRight])
                 }
-                if effectCorner.contains(.topLeft) || effectCorner.contains(.topRight) {
-                    let corners = effectCorner.intersection([.topLeft, .topRight])
-                    path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-                }else{
-                    path = UIBezierPath(rect: rect)
+                if cell.cardJoin {
+                    if effectCorner.contains(.topLeft) || effectCorner.contains(.topRight) {
+                        let corners = effectCorner.intersection([.topLeft, .topRight])
+                        path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+                    } else {
+                        path = UIBezierPath(rect: rect)
+                    }
+                } else {
+                    if let footer = delegate?.tableView?(self, viewForFooterInSection: indexPath.section) as? SFCardTableViewHeaderFooterView, footer.cardJoin {
+                        effectCorner.remove([.bottomLeft, .bottomRight])
+                    }
+                    if effectCorner.contains(.topLeft) || effectCorner.contains(.topRight)
+                       || effectCorner.contains(.bottomLeft) || effectCorner.contains(.bottomRight) {
+                        let corners = effectCorner.intersection([.topLeft, .topRight, .bottomLeft, .bottomRight])
+                        path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+                    } else {
+                        path = UIBezierPath(rect: rect)
+                    }
                 }
             }
             else if indexPath.row == rowCount - 1 {
-                if let footer = delegate?.tableView?(self, viewForFooterInSection: indexPath.section) as? SFCardTableViewHeaderFooterView {
+                if let footer = delegate?.tableView?(self, viewForFooterInSection: indexPath.section) as? SFCardTableViewHeaderFooterView, footer.cardJoin {
                     effectCorner.remove([.bottomLeft, .bottomRight])
                 }
-                if effectCorner.contains(.bottomLeft) || effectCorner.contains(.bottomRight) {
-                    let corners = effectCorner.intersection([.bottomLeft, .bottomRight])
-                    path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-                }else{
-                    path = UIBezierPath(rect: rect)
+                if cell.cardJoin {
+                    if effectCorner.contains(.bottomLeft) || effectCorner.contains(.bottomRight) {
+                        let corners = effectCorner.intersection([.bottomLeft, .bottomRight])
+                        path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+                    } else {
+                        path = UIBezierPath(rect: rect)
+                    }
+                } else {
+                    if let header = delegate?.tableView?(self, viewForHeaderInSection: indexPath.section) as? SFCardTableViewHeaderFooterView, header.cardJoin {
+                        effectCorner.remove([.topLeft, .topRight])
+                    }
+                    if effectCorner.contains(.topLeft) || effectCorner.contains(.topRight)
+                       || effectCorner.contains(.bottomLeft) || effectCorner.contains(.bottomRight) {
+                        let corners = effectCorner.intersection([.topLeft, .topRight, .bottomLeft, .bottomRight])
+                        path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+                    } else {
+                        path = UIBezierPath(rect: rect)
+                    }
                 }
             }
             else {
-                path = UIBezierPath(rect: rect)
+                if cell.cardJoin {
+                    path = UIBezierPath(rect: rect)
+                } else {
+                    if effectCorner.contains(.topLeft) || effectCorner.contains(.topRight)
+                       || effectCorner.contains(.bottomLeft) || effectCorner.contains(.bottomRight) {
+                        let corners = effectCorner.intersection([.topLeft, .topRight, .bottomLeft, .bottomRight])
+                        path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+                    } else {
+                        path = UIBezierPath(rect: rect)
+                    }
+                }
             }
         }
         cell.cardBackgroundNorLayer.frame = cell.bounds
@@ -72,14 +113,18 @@ extension SFTableView {
     public func card(header: UIView?, at section: Int) {
         guard let header = header as? SFCardTableViewHeaderFooterView else { return }
         let radius = header.cardRadius
-        let effectCorner = header.cardCorner.intersection([.topLeft, .topRight])
+        var effectCorner = header.cardCorner.intersection([.topLeft, .topRight, .bottomLeft, .bottomRight])
         let inset = header.cardInset
         let rect = header.bounds.inset(by: inset)
         var path: UIBezierPath?
-        if effectCorner.contains(.topLeft) || effectCorner.contains(.topRight) {
-            let corners = effectCorner.intersection([.topLeft, .topRight])
+        if header.cardJoin {
+            effectCorner.remove([.bottomLeft, .bottomRight])
+        }
+        if effectCorner.contains(.topLeft) || effectCorner.contains(.topRight)
+           || effectCorner.contains(.bottomLeft) || effectCorner.contains(.bottomRight) {
+            let corners = effectCorner.intersection([.topLeft, .topRight, .bottomLeft, .bottomRight])
             path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        }else{
+        } else {
             path = UIBezierPath(rect: rect)
         }
         header.cardBackgroundNorLayer.frame = header.bounds
@@ -93,14 +138,18 @@ extension SFTableView {
     public func card(footer: UIView?, at section: Int) {
         guard let footer = footer as? SFCardTableViewHeaderFooterView else { return }
         let radius = footer.cardRadius
-        let effectCorner = footer.cardCorner.intersection([.bottomLeft, .bottomRight])
+        var effectCorner = footer.cardCorner.intersection([.topLeft, .topRight, .bottomLeft, .bottomRight])
         let inset = footer.cardInset
         let rect = footer.bounds.inset(by: inset)
         var path: UIBezierPath?
-        if effectCorner.contains(.bottomLeft) || effectCorner.contains(.bottomRight) {
-            let corners = effectCorner.intersection([.bottomLeft, .bottomRight])
+        if footer.cardJoin {
+            effectCorner.remove([.topLeft, .topRight])
+        }
+        if effectCorner.contains(.topLeft) || effectCorner.contains(.topRight)
+           || effectCorner.contains(.bottomLeft) || effectCorner.contains(.bottomRight) {
+            let corners = effectCorner.intersection([.topLeft, .topRight, .bottomLeft, .bottomRight])
             path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-        }else{
+        } else {
             path = UIBezierPath(rect: rect)
         }
         footer.cardBackgroundNorLayer.frame = footer.bounds

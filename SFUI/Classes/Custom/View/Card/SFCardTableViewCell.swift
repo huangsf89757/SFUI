@@ -45,11 +45,17 @@ open class SFCardTableViewCell: SFTableViewCell {
         return CAShapeLayer()
     }()
     /// 卡片缩进
-    public var cardInset: UIEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+    public var cardInset: UIEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10) {
+        didSet {
+            updateCardView()
+        }
+    }
     /// 卡片圆角
     public var cardRadius: CGFloat = 10
     /// 卡片圆角位置
     public var cardCorner: UIRectCorner = [.topLeft, .topRight, .bottomLeft, .bottomRight]
+    /// 卡片（和其他cell是否为一体）
+    public var cardJoin = true
     
     
     // MARK: life cycle
@@ -73,8 +79,10 @@ open class SFCardTableViewCell: SFTableViewCell {
         contentView.addSubview(cardView)
         backgroundNorView.layer.insertSublayer(cardBackgroundNorLayer, at: 0)
         backgroundSelView.layer.insertSublayer(cardBackgroundSelLayer, at: 0)
-        
-        cardView.snp.makeConstraints { make in
+        updateCardView()
+    }
+    private func updateCardView() {
+        cardView.snp.remakeConstraints { make in
             make.top.equalToSuperview().offset(cardInset.top)
             make.leading.equalToSuperview().offset(cardInset.left)
             make.trailing.equalToSuperview().offset(-cardInset.right)
