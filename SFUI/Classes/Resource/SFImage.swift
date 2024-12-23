@@ -25,6 +25,7 @@ extension SFImage {
         }
         
         public struct Com {
+            public static var add: UIImage? { image(name: "com/add") }
             public static var close: UIImage? { image(name: "com/close") }
             public static var back: UIImage? { image(name: "com/back") }
             public static var detail: UIImage? { image(name: "com/detail") }

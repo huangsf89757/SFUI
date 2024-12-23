@@ -66,7 +66,7 @@ open class SFCardTableViewCell: SFTableViewCell {
         customUI()
     }
     
-    public override func draw(_ rect: CGRect) {
+    open override func draw(_ rect: CGRect) {
         backgroundNorView.backgroundColor = .clear
         cardBackgroundNorLayer.fillColor = backgroundColorNor?.cgColor
         backgroundSelView.backgroundColor = .clear
