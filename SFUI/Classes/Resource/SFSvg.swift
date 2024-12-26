@@ -25,17 +25,7 @@ extension SFSvg {
             private static func svg(name: String) -> Macaw.Node? {
                 return UI.svg(name: name, directory: "Com")
             }
-//            public static var add: Macaw.Node? { svg(name: "com/add") }
-//            public static var close: Macaw.Node? { svg(name: "com/close") }
             public static var back: Macaw.Node? { svg(name: "back") }
-//            public static var detail: Macaw.Node? { svg(name: "com/detail") }
-//            public static var search: Macaw.Node? { svg(name: "com/search") }
-//            public static var goto: Macaw.Node? { svg(name: "com/goto") }
-//            public static var tip: Macaw.Node? { svg(name: "com/tip") }
-//            public static var setting: Macaw.Node? { svg(name: "com/setting") }
-//            public static var filter: Macaw.Node? { svg(name: "com/filter") }
-//            public static var edit: Macaw.Node? { svg(name: "com/edit") }
-//            public static var noData: Macaw.Node? { svg(name: "com/noData") }
         }
 //        public struct Doc {
 //            public static var folder: Macaw.Node? { svg(name: "doc/folder") }
