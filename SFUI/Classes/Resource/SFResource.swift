@@ -9,6 +9,7 @@ import Foundation
 
 public class SFResource {}
 public class SFImage: SFResource {}
+public class SFSvg: SFResource {}
 public class SFColor: SFResource {}
 public class SFFont: SFResource {}
 public class SFText: SFResource {}

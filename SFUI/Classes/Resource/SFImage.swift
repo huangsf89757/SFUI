@@ -11,7 +11,6 @@ import UIKit
 import SFExtension
 import SFBase
 
-// MARK: - SFImage
 extension SFImage {
     public struct App {
         public static var icon: UIImage?
