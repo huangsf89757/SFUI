@@ -115,6 +115,7 @@ open class SFBadgeView: SFView {
                 textLabel.text = String(format: "%ld+", max)
             }
         case .text(let string):
+            textLabel.isHidden = false
             textLabel.text = string
         }
         // 位置

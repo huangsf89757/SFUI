@@ -12,6 +12,39 @@
         }
       }
     },
+    "com_cancel_doing" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消中"
+          }
+        }
+      }
+    },
+    "com_cancel_failure" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消失败"
+          }
+        }
+      }
+    },
+    "com_cancel_success" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "取消成功"
+          }
+        }
+      }
+    },
     "com_commit" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -52,6 +85,50 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "提交成功"
+          }
+        }
+      }
+    },
+    "com_delete" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除"
+          }
+        }
+      }
+    },
+    "com_delete_doing" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除中"
+          }
+        }
+      }
+    },
+    "com_delete_failure" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除成功"
+          }
+        }
+      }
+    },
+    "com_delete_success" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除失败"
           }
         }
       }
@@ -344,6 +421,39 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "暂无数据"
+          }
+        }
+      }
+    },
+    "select_all" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全选"
+          }
+        }
+      }
+    },
+    "select_disable" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不可选择"
+          }
+        }
+      }
+    },
+    "select_enable" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "可选择"
           }
         }
       }

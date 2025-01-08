@@ -25,6 +25,13 @@ extension SFText {
         }
         
         public static var com_cancel: String { text(name: "com_cancel") }
+        public static var com_cancel_doing: String { text(name: "com_cancel_doing") }
+        public static var com_cancel_failure: String { text(name: "com_cancel_failure") }
+        public static var com_cancel_success: String { text(name: "com_cancel_success") }
+        public static var com_delete: String { text(name: "com_delete") }
+        public static var com_delete_doing: String { text(name: "com_delete_doing") }
+        public static var com_delete_failure: String { text(name: "com_delete_failure") }
+        public static var com_delete_success: String { text(name: "com_delete_success") }
         public static var com_commit: String { text(name: "com_commit") }
         public static var com_commit_doing: String { text(name: "com_commit_doing") }
         public static var com_commit_failure: String { text(name: "com_commit_failure") }
@@ -54,7 +61,12 @@ extension SFText {
         public static var hud_loading: String { text(name: "hud_loading") }
         public static var hud_success: String { text(name: "hud_success") }
         public static var hud_warning: String { text(name: "hud_warning") }
+        
         public static var noData: String { text(name: "noData") }
+        
+        public static var select_all: String { text(name: "select_all") }
+        public static var select_disable: String { text(name: "select_disable") }
+        public static var select_enable: String { text(name: "select_enable") }
         
     }
 }
