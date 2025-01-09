@@ -147,6 +147,10 @@ extension SFColor {
         /// 用于高亮显示某些元素，吸引用户的注意力。
         public static var highlight: UIColor? { color(name: "highlight") }
         
+        /// 删除色: error ｜ 浅色：#DC3545 (红色) ｜ 深色：#DC3545 (红色)
+        /// 用于表示删除，具有强烈的警示作用。
+        public static var delete: UIColor? { color(name: "delete") }
+        
         /// 浅灰色: lightGray ｜ 浅色：#F2F2F2 (更浅的浅灰色) ｜ 深色：#E0E0E0 (较浅灰色)
         public static var lightGray: UIColor? { color(name: "lightGray") }
         
