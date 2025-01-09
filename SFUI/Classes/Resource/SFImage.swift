@@ -35,6 +35,7 @@ extension SFImage {
             public static var filter: UIImage? { image(name: "com/filter") }
             public static var edit: UIImage? { image(name: "com/edit") }
             public static var noData: UIImage? { image(name: "com/noData") }
+            public static var change: UIImage? { image(name: "com/change") }
         }
         public struct Doc {
             public static var folder: UIImage? { image(name: "doc/folder") }

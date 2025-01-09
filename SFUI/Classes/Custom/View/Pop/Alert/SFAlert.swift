@@ -21,7 +21,7 @@ public final class SFAlert {
         return SFAlertView()
     }()
     /// 唯一标识
-    public var identifier: String = UUID().uuidString {
+    public private(set) var identifier: String = UUID().uuidString {
         didSet {
             view.identifier = identifier
         }
@@ -36,8 +36,8 @@ public final class SFAlert {
  */
 extension SFAlert {
     /// show
-    public static func show() {
-        SFAlert.shared.show()
+    public static func show(autoDismiss: Bool = false) {
+        SFAlert.shared.show(autoDismiss: autoDismiss)
     }
     
     /// dismiss
@@ -69,8 +69,9 @@ extension SFAlert {
  */
 extension SFAlert {
     /// show
-    public func show() {
+    public func show(autoDismiss: Bool = false) {
         DispatchQueue.main.async {
+            self.view.autoDismissWhenClickMask = autoDismiss
             self.view.show(showAnimationsBlock: {
                 popView in
                 let translation = popView.animationOfTranslation(from: .offset(0, 50), to: .zero)
@@ -94,6 +95,7 @@ extension SFAlert {
 }
 extension SFAlert {
     public func config(title: String?, msg: String? = nil, tip: String? = nil) {
+        self.view.autoDismissWhenClickMask = false
         self.view.config(title: title, msg: msg, tip: tip)
     }
     public func addCancelAction(title: String, appearance: ((SFButton)->())? = nil, action: @escaping (SFAlertView) -> Bool) {
